@@ -1,0 +1,423 @@
+\documentclass[10pt]{article}
+%----------Packages----------
+\usepackage[utf8]{inputenc}
+\usepackage[landscape,left=5mm,right=5mm,top=4mm,bottom=4mm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{changepage}
+\usepackage[shortlabels]{enumitem}
+
+%----------Formatting----------
+\pagenumbering{gobble}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\setlist[enumerate]{topsep=0pt,noitemsep}
+\setlist[itemize]{topsep=0pt,noitemsep}
+
+%----------Symbols----------
+\newcommand{\ep}{\varepsilon}
+
+%----------General----------
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\newcommand{\tab}{\hspace{.02\textwidth}}
+\newenvironment{indented}{\begin{adjustwidth}{.02\textwidth}{}}{\end{adjustwidth}}
+\newcommand{\splittab}{\hspace{2.58ex}}
+\newcommand{\twoEqn}[4]{$\makebox[#3][l]{$#1$} \makebox[#4][l]{$#2$}$}
+\newcommand{\threeEqn}[6]{$\makebox[#4][l]{$#1$} \makebox[#5][l]{$#2$} \makebox[#6][l]{$#3$}$}
+\newcommand{\Thm}[1]{\textbf{Thm }(\emph{#1}):}
+
+%----------Math----------
+\renewcommand{\d}{\,\mathrm{d}}
+\newcommand{\st}{\text{ s.t. }}
+
+%----------Brackets----------
+\newcommand{\lrb}[1]{\left(#1\right)}               % left right brackets ()
+\newcommand{\sqb}[1]{\left[#1\right]}               % square brackets []
+\newcommand{\abs}[1]{\left|#1\right|}               % absolute value ||
+\newcommand{\agb}[1]{\left\langle#1\right\rangle}   % angle brackets <>
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+%----------Section Headings----------
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0ex}
+                                {-1ex}      % beforeskip
+                                {0.7ex}     % afterskip
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0ex}
+                                {-0.4ex}    % beforeskip
+                                {0.4ex}     % afterskip
+                                {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+
+%----------MATH 318----------
+\newcommand{\eset}{\varnothing}
+\newcommand{\E}[1]{\mathbb E\lrb{#1}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+\newcommand{\bv}[1]{\boldsymbol{#1}}
+
+\newcommand{\Bern}{\mathrm{Bern}}
+\newcommand{\Bin}{\mathrm{Bin}}
+\newcommand{\Geom}{\mathrm{Geom}}
+\newcommand{\Pois}{\mathrm{Pois}}
+\newcommand{\Unif}{\mathrm{Unif}}
+\newcommand{\Exp}{\mathrm{Exp}}
+
+\newcommand{\toD}{\xrightarrow{D}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+%----------Document Begins Here----------
+\begin{document}
+
+\begin{center}
+    \LARGE{\textbf{MATH 318 Formula Sheet}}
+\end{center}
+
+\begin{multicols*}{3}
+
+\section{Probability Theory}
+
+Permutations and Combinations:
+
+\tab \twoEqn{P(n,r)=\frac{n!}{(n-r)!}}{C(n,r)=\binom nr=\frac{n!}{(n-r)!r!}}{11em}{11em}
+
+Multinomial Coefficient:
+
+\tab $\binom{n}{n_1}\binom{n-n_1}{n_2}\cdots\binom{n-n_1-\cdots-n_{m-1}}{n_m}=\frac{n!}{(n_1!)(n_2!)\cdots(n_m!)}$
+
+Probability Function:
+\begin{itemize}
+    \item $0\le P(E)\le 1$
+    \item $P(S)=1$
+    \item $E_1\cap E_2=\eset\implies P(E_1\cup E_2)=P(E_1)+P(E_2)$
+\end{itemize}
+
+Inclusion-Exclusion Principle:
+
+\tab $P(E_1\cup E_2)=P(E_1)+P(E_2)-P(E_1\cap E_2)$
+
+Conditional Probability:
+
+\tab $P(E\mid F)=\frac{P(E\cap F)}{P(F)}$
+
+Independence:
+
+\tab $P(E\cap F)=P(E)P(F)$
+
+Law of Total Probability ($F_1,\ldots,F_n$ is a partition of $S$):
+
+\tab $P(E)=\sum_{i=1}^n P(E\mid F_i)P(F_i)$
+
+Bayes' Theorem:
+
+\tab $P(F_j\mid E)=\frac{P(E\mid F_j)P(F_j)}{\sum_{i=1}^n P(E\mid F_i)P(F_i)}$
+
+\section{Random Variables}
+
+Probability Mass Function:
+
+\tab $p(x)=P(X=x)$
+
+Probability Density Function:
+
+\tab $P(a\le X\le b)=\int_a^b f(x)\d x$
+
+Cumulative Distribution Function:
+
+\tab $F(x)=P(X\le x)=\int_{-\infty}^x f(s)\d s$
+
+\tab $F'(x)=f(x)$
+
+Memoryless Property:
+
+\tab $P(X>m+n\mid X\ge n)=P(X>m)$
+
+Expectation:
+
+\tab \twoEqn{\E{X}=\sum_{i}x_i p(x_i)}{\E{X}=\int_{-\infty}^\infty xf(x)\d x}{11em}{11em}
+
+Linearity of Expectation:
+
+\tab \twoEqn{\E{aX+b}=a\E{X}+b}{\E{X+Y}=\E{X}+\E{Y}}{11em}{11em}
+
+Normal Distribution: 
+
+\tab $f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+
+Scaling Property:
+
+\tab $X\sim N(\mu,\sigma^2)\implies Y=\frac{X-\mu}{\sigma}\sim N(0,1)$
+
+Law of the Unconscious Statistician:
+
+\tab $\E{g(X)}=\int_{-\infty}^\infty g(x)f(x)\d x$
+
+Moments:
+
+\tab $\E{X^n}=\begin{cases}
+    \int_{-\infty}^\infty x^n f(x)\d x \\
+    \sum_i x_i^n p(x_i)
+\end{cases}$
+
+Variance:
+
+\tab $\Var(X)=\E{(X-\E{X})^2}=\E{X^2}-\E{X}^2$
+
+Joint Distribution:
+
+\tab $p(x,y)=P(X=x,Y=y)$
+
+\tab $P((X,Y)\in C)=\iint_C f(x,y)\d x\d y$
+
+Marginal PDF:
+
+\tab $P(X\in A)=\int_A\int_{-\infty}^\infty f(x,y)\d y\d x=\int_A f_X(x)\d x$
+
+Independence:
+
+\tab $f(x,y)=f_X(x)f_Y(y)$
+
+Expectation and Variance of Independent RVs:
+
+\tab $\E{XY}=\E{X}\E{Y}$
+
+\tab $\Var(X+Y)=\Var(X)+\Var(Y)$
+
+Covariance:
+
+\tab $\Cov(X,Y)=\E{XY}-\E{X}\E{Y}$
+
+Correlation Coefficient:
+
+\tab $\rho(X,Y)=\frac{\Cov(X,Y)}{\sqrt{\Var(X)\Var(Y)}}\in[-1,1]$
+
+Sums of Independent RVs:
+
+\tab $F_{X+Y}(a)=\int_{-\infty}^\infty\int_{-\infty}^{a-y}f_X(x)f_Y(y)\d x\d y$
+
+\tab $f_{X+Y}(a)=\int_{-\infty}^\infty f_X(a-y)f_Y(y)\d y$
+
+Poisson Process $X_i\sim\exp(\lambda)$:
+
+\tab $f_{X_1+\cdots+X_n}=\frac{\lambda^n x^{n-1} e^{-\lambda x}}{(n-1)!}$
+
+\tab $N_t=\Pois(\lambda t)$
+
+Conditional Distribution:
+
+\tab \twoEqn{p_{X+Y}(x\mid y)=\frac{p(x,y)}{p_Y(y)}}{f_{X\mid Y}(x\mid y)=\frac{f(x,y)}{f_Y(y)}}{11em}{11em}
+
+Conditional Expectation:
+
+\tab $\E{X\mid Y=y}=\sum_x p_{X+Y}(x\mid y)$
+
+\tab $\E{X}=\sum_y\E{X\mid Y=y}P(Y=y)=\E{\E{X\mid Y}}$
+
+\section{Characteristic Functions}
+
+\tab \twoEqn{\phi(t)=\E{e^{itX}}}{M(t)=\E{e^{tX}}}{10em}{10em}
+
+Extracting Moments:
+
+\tab $\frac{\d^n}{\d t^n}\big|_{t=0}\phi(t)=i^n\E{X^n}$
+
+Inversion Theorem:
+
+\tab $f(x)=\frac{1}{2\pi}\int_{-\infty}^\infty e^{-itx}\phi(t)\d t$
+
+Shifting Property:
+
+\tab $\phi_{aX+b}(t)=e^{itb}\phi_X(ta)$
+
+\section{Convergence of Random Variables}
+
+Convergence in Distribution:
+
+\tab $X_n\toD X\iff \lim_{n\to\infty}F_n(x)=F(x)\forall\text{cont. }x$
+
+Continuity Theorem:
+
+\tab $F_n\to F\implies\lim_{n\to\infty}\phi_n(t)=\phi(t)\forall t\in\R$
+
+\tab $\lim_{n\to\infty}\phi_n(t)=\phi(t)\land\text{cont. at }0\implies X_n\toD X$
+
+\Thm{Weak Law of Large Numbers} let $X_1,X_2,\cdots$ be iid RVs with $\mu=\E{X_i}<\infty$.
+
+\tab $S_n=\sum_{i=1}^n X_i\implies\frac{S_n}{n}\toD\mu$
+
+\Thm{Central Limit Theorem} let $X_1,X_2,\cdots$ be iid RVs with $\mu=\E{X_i}$ and $\sigma^2=\Var(X_i)<\infty$.
+
+\tab $\frac{S_n-n\mu}{\sigma\sqrt{n}}\toD N(0,1)$
+
+\section{Statistical Estimation}
+
+Sample Mean:
+
+\tab \twoEqn{\bar{X}=\frac 1n\sum_{i=1}^n X_i}{\Var(\bar{X})=\frac{\sigma^2}{n}}{11em}{11em}
+
+Sample Variance:
+
+\tab $S^2=\frac{1}{n-1}\sum_{i=1}^n(X_i-\bar{X})^2$
+
+Hypothesis Testing:
+
+\tab Reject if $P(\text{observation or worse}\mid H)<p=0.05$
+
+\tab $P(|\bar X-\mu|\ge a)=0.05$, solve for $a$ using CLT
+
+\tab Reject if observed $a$ is greater than calculated $a$
+
+$a\%$ Confidence Interval $A$:
+
+\tab $P(\bar{X}\in A)=a\%$
+
+\tab $P(|Z|<z)=P\lrb{\abs{\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}}<z}=a\%$
+
+\tab $\bar X\in\sqb{\mu-\frac{\sigma}{\sqrt{n}}z,\mu+\frac{\sigma}{\sqrt{n}}z}$
+
+\tab $\mu\in\sqb{\bar X-\frac{\sigma}{\sqrt{n}}z,\bar X+\frac{\sigma}{\sqrt{n}}z}$
+
+Student-t Distribution ($n-1$ DOF):
+
+\tab $T=\frac{\bar X-\mu}{S/\sqrt{n}}\sim t(n-1)$
+
+\tab $P(|T|>a)=0.05$
+
+\section{Random Walks}
+
+Simple Random Walks on $\Z^d$:
+\begin{itemize}
+    \item Number of visits to the origin: $\E{M}=\frac{1}{1-u}$
+    \item Probability of return: $u=1-\frac{1}{\E{M}}$
+    \item If $u=1$, the walk is recurrent, otherwise transient.
+    \item $\E{M}=\frac{1}{(2\pi)^d}\int_{[-\pi,\pi]^d}\frac{1}{1-\phi_1(\vec k)}d^d\vec k$
+    \item SRW is recurrent for $d=1,2$, transient for $d>2$.
+\end{itemize}
+
+\section{Markov Chains}
+
+Transition Matrix $P$: rows add to $1$. 
+
+\tab $\vec X_{n+1}=\vec XP$
+
+One-Step Transition Probability:
+
+\tab \twoEqn{P_{ij}=P(X_{n+1}=j\mid X_n=i)}{i\to j}{16em}{7em}
+
+\tab $\sum_{j}P_{ij}=1$
+
+$n$-step Transition Probability:
+
+\tab $P_{ij}^{n}=P(X_{l+n}=j\mid X_l=i)$
+
+Chapman-Kolmogorov Equation:
+
+\tab $P_{ij}^{n+m}=\sum_k P_{ik}^{n}P_{kj}^{m}$
+
+\tab $P^{n+m}=P^nP^m$
+
+Classification of States:
+\begin{itemize}
+    \item State $i$ is absorbing if $P_{ii}=1$.
+    \item $j$ is accessible from $i$ if $P_{ij}^n>0$ for some $n$.
+    \item $i$ and $j$ communicate ($i\leftrightarrow j$) if $j$ is accessible from $i$ and $i$ is accessible from $j$.
+\end{itemize}
+
+Irreducibility: all states communicate.
+
+Periodicity: 
+
+\tab $d=\gcd\{n\ge 1:P_{ii}^n>0\}$
+
+\tab $d=1$ or $P_{ii}^n=0\forall n\implies i$ is aperiodic
+
+Transience and Recurrence:
+
+\tab $f_i=P(\exists n\ge 1\st X_n=i\mid X_0=i)=P(\text{return})$
+
+\tab $f_i=1\implies i$ is recurrent (every path leads back to $i$)
+
+\tab $f_i<1\implies i$ is transient
+
+Recurrent State for $T_i=$ time of first return to $i$:
+
+\tab $\E{T_i\mid X_0=i}\le\infty\implies$ positive recurrent
+
+\tab $\E{T_i\mid X_0=i}=\infty\implies$ null recurrent
+
+Ergodic: an aperiodic, positive recurrent state is ergodic.
+
+\tab A Markov chain is ergodic if all states are ergodic.
+
+\Thm{Existence of Equilibrium Distribution} for an irreducible, ergodic MC, the limit 
+
+\tab $\pi_j=\lim_{n\to\infty}P_{ij}^n$
+
+exists for all $j$ and is independent of $i$.
+\begin{enumerate}
+    \item $\bv\pi$ is the unique solution of $\bv\pi=\bv\pi P$ and $\sum_{j}\pi_j=1$
+    \item Let $N_j(n)$ be the number of visits to state $j$ after $n$ steps. Then $\pi_j=\lim_{n\to\infty}\frac{N_j(n)}{n}$
+    \item $\pi_j=\frac{1}{m_j}$ where $m_j=\E{T_j\mid X_0=j}$
+\end{enumerate}
+
+\Thm{Time Reversal} given a MC $(X_n)_{n=0}^N$ with stationary distribution $\bv\pi$ and with $P(X_0=j)=\pi_j$, let $Y_n=X_{N-n}$. Then $(Y_n)_{n=0}^N$ is a MC with transition probabilities $Q_{ij}=P_{ji}\frac{\pi_j}{\pi_i}$ and stationary distribution $\bv\pi$
+
+Time Reversibility: 
+
+\tab \twoEqn{Q_{ij}=P_{ji}\forall i,j}{\pi_i P_{ij}=\pi_j P_{ji}}{11em}{11em}
+
+Entropy: $M$ molecules, $B$ regions $M_1,\ldots,M_B$. 
+
+\tab $f_i=\frac{M_i}{M}$
+
+Shannon entropy: $-\sum_{i=1}^B f_i\log f_i$
+\begin{indented}
+    For an irreducible, ergodic MC, the Shannon entropy increases monotonically iff $\bv\pi$ is uniform. 
+\end{indented}
+
+Relative entropy: $D(\pi_a\mathrel{\Vert}\pi_b)=\sum_{i=1}^N\pi_a(i)\log\frac{\pi_a(i)}{\pi_b(i)}$
+\begin{indented}
+    For an irreducible, ergodic MC, consider two starting distributions $\pi_0$ and $\mu_0$. Then $D(\pi_n\mathrel{\Vert}\mu_n)$ decreases monotonically. 
+\end{indented}
+
+\section{Random Variables}
+
+$\begin{array}{lllll} \toprule
+    \text{Distribution} & \text{PMF/PDF} & \text{Mean} & \text{Variance} & \text{CF} \\ \midrule
+    \Bern(p) & p(1)=p, p(0)=1-p & p & p(1-p) & 1-p+pe^{it} \\
+    \Bin(n,p) & p(i)=\binom{n}{i}p^i(1-p)^{n-i} & np & np(1-p) & (1-p+pe^{it})^n \\
+    \Geom(p) & p(i)=(1-p)^{i-1}p & \frac 1p & \frac{1-p}{p^2} & \frac{pe^{it}}{1-(1-p)e^{it}} \\
+    \Pois(\lambda) & p(i)=\frac{\lambda^i}{i!}e^{-\lambda} & \lambda & \lambda & e^{\lambda(e^{it}-1)} \\
+    \Unif(a,b) & f(x)=\frac{1}{b-a}\quad x\in[a,b] & \frac{a+b}{2} & \frac{(b-a)^2}{12} & \frac{e^{itb}-e^{ita}}{it(b-a)} \\
+    \Exp(\lambda) & f(x)=\lambda e^{-\lambda x}\quad x\ge 0 & \frac{1}{\lambda} & \frac{1}{\lambda^2} & \frac{\lambda}{\lambda-it} \\
+    N(\mu,\sigma^2) & f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} & \mu & \sigma^2 & e^{i\mu t-\frac{\sigma^2t^2}{2}} \\ \bottomrule
+\end{array}$
+
+\section{Identities and Approximations}
+
+Taylor Expansion of $\cos(x)$:
+
+\tab $\cos(x)\approx 1-\frac{x^2}{4}+\frac{x^4}{24}$
+
+Stirling's Approximation:
+
+\tab $n!\approx\sqrt{2\pi n}\lrb{\frac{n}{e}}^n$
+
+\rule{\linewidth}{0.01em}
+
+\scriptsize 
+Updated \today
+
+\end{multicols*}
+
+\end{document}
