@@ -1,0 +1,259 @@
+%----------Setup----------
+\documentclass[10pt]{article}
+\usepackage[landscape, total={10.8in,8in}]{geometry}
+\usepackage[utf8]{inputenc}
+\pagenumbering{gobble}
+\parindent=0pt
+
+%----------Packages----------
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{bm}
+\usepackage{tabu}
+
+%----------Headings----------
+\newcommand\sectionheading[1]{\begin{center}\large{\textbf{#1}}\end{center}\normalsize}
+\newcommand\heading[1]{\smallskip\textbf{#1}\smallskip}
+%----------Symbols----------
+\newcommand{\C}{{\mathsf C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\ka}{\kappa}
+\renewcommand{\phi}{\varphi}
+\newcommand{\ts}{\textsuperscript}
+%----------Vectors and Vector Fields----------
+\newcommand{\norm}[1]{\left|#1\right|}
+\newcommand{\bv}[1]{\mathbf{#1}}                                % bolded vector
+\newcommand{\uv}[1]{{\bm{\hat{\textnormal{\bfseries #1}}}}}     % unit vector
+\newcommand{\ihat}{\uv{\i}}
+\newcommand{\jhat}{\uv{\j}}
+\newcommand{\khat}{\uv{k}}
+\newcommand{\F}{\bv F}
+\newcommand{\G}{\bv G}
+\renewcommand{\N}{\uv N}
+\newcommand{\T}{\uv T}
+\newcommand{\B}{\uv B}
+\newcommand{\n}{\uv n}
+\renewcommand{\r}{\bv r}
+\renewcommand{\v}{\bv v}
+%----------Differentiation----------
+\renewcommand{\d}{\,\mathrm{d}}
+\newcommand{\p}{\partial}
+\newcommand{\dv}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\ddv}[2]{\frac{\mathrm{d}^2 #1}{\mathrm{d} #2^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+%----------Grad, Div, Curl----------
+\newcommand{\grad}{\nabla}
+\newcommand{\divg}{\nabla\cdot}
+\newcommand{\curl}{\nabla\times}
+%----------Brackets----------
+\newcommand{\agb}[1]{\left\langle #1 \right\rangle}     % angled brackets
+\newcommand{\lrb}[1]{\left( #1 \right)}                 % left right brackets
+
+%----------Info----------
+\newcommand*{\course}{MATH 317} 
+
+%----------Document Begins Here----------
+\begin{document}
+
+\begin{center}
+    \huge{\textbf{\course \ Formula Sheet}}
+\end{center}
+
+\begin{multicols*}{2}
+
+$\C^n$: continuous 0\ts{th} to $n$\ts{th} order partial derivatives.
+
+\sectionheading{Curves}
+
+{\tabulinesep=1pt
+\begin{tabu}{@{}ll}
+    velocity & $\v(t)=\dv\r t(t)=\dv st(t)\T(t)$ \\
+    unit tangent & $\T(t)=\frac{\v(t)}{\norm{\v(t)}}$ \quad (general parameterization) \\
+    & $\T(s)=\dv\r s(s)$ \hspace{4pt} (arc length parameterization) \\
+    acceleration & $\bv a(t)=\ddv\r t(t)=\ddv st(t)\T(t)+\ka(t)\norm{\v(t)}^2\N(t)$ \\
+    speed & $\dv st(t)=\norm{\v(t)}=\norm{\dv\r t(t)}$ \\
+    arc length & $s(T)=\int_0^T\norm{\v(t)}\d t=\int_0^T\sqrt{x'(t)^2+y'(t)^2+z'(t)^2}\d t$ \\
+    curvature & $\ka(t)=\norm{\dv{\T}{t}(t)}/\dv st(t)=\frac{\norm{\v(t)\times\bv a(t)}}{(\dv st(t))^3}=\frac{\norm{\v(t)\times\bv a(t)}}{\norm{\v(t)}^3}$ \\
+    & $\ka(s)=\norm{\dv \phi s(s)}=\norm{\dv{\T}{s}(s)}$ \\
+    unit normal & $\N(t)=\dv{\T}{t}(t)/\norm{\dv{\T}{t}(t)} \qquad \N(s)=\dv{\T}{s}(s)/\ka(s)$ \\
+    radius of curvature & $\rho(t)=\frac{1}{\ka(t)}$ \\
+    center of curvature & $\r(t)+\rho(t)\N(t)$ \\
+    binormal & $\B(t)=\T(t)\times\N(t)=\frac{\v(t)\times\bv a(t)}{\norm{\v(t)\times\bv a(t)}}$ \\
+    torsion & $\tau(t)=\frac{(\v(t)\times\bv a(t))\cdot\dv{\bv a}{t}(t)}{\norm{\v(t)\times\bv a(t)}^2}$ 
+\end{tabu}}
+
+% \heading{Frenet-Serret Formulas}
+% \begin{align*}
+%     \dv{\T}{s}(s)&=\ka(s)\,\N(s) \\
+%     \dv{\N}{s}(s)&=\tau(s)\,\B(s)-\ka(s)\,\T(s) \\
+%     \dv{\B}{s}(s)&=-\tau(s)\,\N(s)
+% \end{align*}
+
+\heading{Curvature Formulas in Two Dimensions}
+\[\ka(t)=\frac{\norm{\dv xt(t)\ddv yt(t)-\dv yt(t)\ddv xt(t)}}{\Bigl[(\dv xt(t))^2+(\dv yt(t))^2\Bigr]^{3/2}} \qquad \ka(x)=\frac{\norm{\ddv yx(x)}}{\Bigl[1+(\dv yx(x))^2\Bigr]^{3/2}}\]
+
+% \heading{Integrating Along a Curve}
+
+% Consider curve $C$ parameterized by $(x(t),y(t),z(t))$, $a\le t\le b$. For a function $f(x,y,z)$,
+% \[\int_C f(x,y,z)\d s=\int_a^b f\bigl(x(t),y(t),z(t)\bigr)\sqrt{x'(t)^2+y'(t)^2+z'(t)^2}\d t\] 
+
+% Consider $y=f(x)$, $a\le x\le b$. For a function $g(x,y)$,
+% \[\int_C g(x,y)\d s=\int_a^b g(x,f(x))\sqrt{1+f'(x)^2}\d x\] 
+
+\sectionheading{Vector Fields}
+
+\heading{Field Lines}
+
+\[\text{Solve: }\dv\r t=\v(\r(t))\]
+\[\text{Integrate: }\frac{\d x}{v_1(x,y)}=\frac{\d y}{v_2(x,y)} \quad\text{ or }\quad \frac{\d x}{v_1(x,y,z)}=\frac{\d y}{v_2(x,y,z)}=\frac{\d z}{v_3(x,y,z)}\]
+
+\heading{Conservative Vector Fields}
+
+\medskip
+\begin{tabular}{@{}ll}
+    Definition & $\F$ is conservative iff there exists $\phi$ such that $\F=\grad\phi$. \\
+    Screening Test & $\curl\F=\bv 0$ \\    
+\end{tabular}
+\medskip
+
+If $\F$ is $\C^0$ on a connected open set $U\subseteq\R^2$ or $\R^3$, then the following are equivalent:
+\begin{itemize}[noitemsep,topsep=4pt]
+    \item There exists $\phi$ such that $\F=\grad\phi$.
+    \item $\oint_C\F\cdot\bv\d r=0$ for any closed curve $C$.
+    \item $\int\F\cdot\bv\d r$ is path independent.
+\end{itemize}
+
+\newcolumn
+If $\F$ is $\C^1$ on a simply-connected open set $U\subseteq\R^2$ or $\R^3$, then:
+\begin{itemize}[itemsep=0pt,topsep=4pt]
+    \item $\F$ is conservative iff $\curl\F=\bv 0$.
+\end{itemize}
+
+\heading{Line Integrals}
+\[\int_C\F\cdot\d\r=\int_C(F_1\d x+F_2\d y+F_3\d z)=\int_{t_0}^{t_1}\F(\r(t))\cdot\r'(t)\d t\]
+\[\int_C\F\cdot\d\r=\phi(P_1)-\phi(P_0)\qquad\text{(conservative)}\]
+
+\heading{Parameterizations}
+
+{\tabulinesep=3pt
+\begin{tabu}{@{}ll}
+    Surface     & $\bv r(u,v)=\bigl(x(u,v),y(u,v),z(u,v)\bigr)$ where $(u,v)\in D\subseteq\R^2$ \\
+    Spherical   & $(\rho\sin\phi\cos\theta,\rho\sin\phi\sin\theta,\rho\cos\phi)$ \\
+                & $\d V=\rho^2\sin\phi\d\rho\d\theta\d\phi$ \\
+    Cylindrical & $(\rho\cos\theta,\rho\sin\theta,z)$ \\
+                & $\d V=r\d r\d \theta\d z$
+\end{tabu}}
+
+\heading{Surface Integrals}
+\[\iint_S\rho\d S\quad\text{(area)}\qquad\iint_S\F\cdot\n\d S\quad\text{(flux)}\]
+
+
+\begin{tabular}{p{100pt}c}
+    \hline\\
+    $\r(u,v)$ & $\begin{aligned}
+                    \n\d S&=\pm\pd\r u(u,v)\times\pd\r v(u,v)\d u\d v \\
+                    \d S&=\norm{\pd\r u(u,v)\times\pd\r v(u,v)}\d u\d v
+                \end{aligned}$ \\[25pt]
+    \hline\\
+    $z=f(x,y)$ & $\begin{aligned}
+                    \n\d S&=\pm\left[-f_x(x,y)\ihat-f_y(x,y)\jhat+\khat\right]\d x\d y \\
+                    \d S&=\sqrt{1+f_x(x,y)^2+f_y(x,y)^2}\d x\d y
+                \end{aligned}$ \\[25pt]
+    \hline\\
+    $G(x,y,z)=K$\newline$G_z(x,y,z)\ne 0$ & $\begin{aligned}
+                                                \n\d S&=\pm\frac{\grad G(x,y,z)}{\grad G(x,y,z)\cdot\khat}\d x\d y \\
+                                                \d S&=\norm{\frac{\grad G(x,y,z)}{\grad G(x,y,z)\cdot\khat}}\d x\d y
+                                            \end{aligned}$ \\[33pt]
+    \hline
+\end{tabular}
+
+
+\newpage 
+\heading{Gradient, Divergence, and Curl}
+
+\[\mathrm{grad}\,f=\grad f=\pd fx\ihat+\pd fy\jhat+\pd fz\khat\]
+\[\mathrm{div}\,\F=\divg\F=\pd{F_1}x+\pd{F_2}y+\pd{F_3}z\]
+\[\mathrm{curl}\,\F=\curl\F=\lrb{\pd{F_3}y-\pd{F_2}z}\ihat+\lrb{\pd{F_1}z-\pd{F_3}x}\jhat+\lrb{\pd{F_2}x-\pd{F_1}y}\khat\]
+\begin{align*}
+    \divg(\curl\F) &= 0 \\
+    \curl(\grad f) &= 0
+\end{align*}
+
+\heading{Vector Potentials}
+
+\medskip
+\begin{tabular}{@{}ll}
+    Definition & $\G$ is a vector potential for $\F$ if $\F=\curl\G$ \\
+    Screening Test & $\divg\F=0$
+\end{tabular}
+\medskip
+
+{\footnotesize\[\G=\agb{\int_0^zF_2(x,y,\tilde{z})\d\tilde{z}+M(x,y),-\int_0^zF_1(x,y,\tilde{z})\d\tilde{z}+N(x,y),0}, \text{ where } \pd Nx-\pd My=F_3(x,y,0)\]}
+Take $M(x,y)=0$ and $N(x,y)=\int_0^x F_3(\tilde{x},y,0)\d\tilde{x}$.
+\[\G=\agb{\int_0^zF_2(x,y,\tilde{z})\d\tilde{z},-\int_0^zF_1(x,y,\tilde{z})\d\tilde{z}+\int_0^x F_3(\tilde{x},y,0)\d\tilde{x},0}\]
+
+\heading{Divergence Theorem}
+
+\begin{itemize}[itemsep=0pt,topsep=0pt]
+    \item $V$ is a bounded solid with a piecewise smooth surface $\p V$,
+    \item $\F$ is $\C^1$ in $V$:
+\end{itemize}
+\[\iint_{\p V}\F\cdot\n\d S=\iiint_V\divg\F\d V\]
+where $\n$ is the outward unit normal of $\p V$.
+\[\iint_{\p V}\n\ast\tilde\F\d S=\iiint_V\nabla\ast\tilde\F\d V\]
+where $\ast=\cdot$ or $\times$ or nothing and $\tilde\F=\F$ or $f$.
+
+\heading{Green's Theorem}
+
+\begin{itemize}[itemsep=0pt,topsep=0pt]
+    \item $R\subset\R^2$ is connected and open,
+    \item Bounded by $\p R$: finite \# of simple, closed, piecewise-smooth curves oriented consistently with $R$,
+    \item $\F$ is $\C^1$ on $R$:
+\end{itemize}
+\[\oint_{\p R}\F\cdot\d\r=\oint_{\p R}\Bigl(F_1(x,y)\d x+F_2(x,y)\d y\Bigr)=\iint_{\mathcal R}\lrb{\pd{F_2}x-\pd{F_1}y}\d x\d y\]
+
+\heading{Stoke's Theorem}
+
+\begin{itemize}[itemsep=0pt,topsep=0pt]
+    \item $S$ is a piecewise-smooth, oriented surface,
+    \item $\p S$ consists of finite number of piecewise smooth, simple curves that are oriented consistently with $\n$.
+    \item $\F$ is $\C^1$ on $S$:
+\end{itemize}
+\[\oint_{\p S}\F\cdot\d\r=\iint_S\curl\F\cdot\n\d S\]
+
+\newcolumn
+\sectionheading{Identities and Derivatives}
+\heading{Trig}
+\begin{align*}
+    \cos^2 x        &=\frac{1+\cos(2x)}{2} \\
+    \sin^2 x        &=\frac{1-\cos(2x)}{2} \\
+    \cos(2x)        &=\cos^2 x-\sin^2 x \\ 
+    \sin(2x)        &=2\sin x\cos x \\
+    \sin(x\pm y)    &=\sin x \cos y \pm \cos x \sin y \\
+    \cos(x\pm y)    &=\cos x \cos y \mp \sin x \sin y \\
+    \tan(x\pm y)    &=\frac{\tan x \pm \tan y}{1 \mp \tan x \tan y}
+\end{align*}
+\heading{Derivatives} 
+\begin{align*}
+    \frac{d}{dx} (\tan x)       &= \sec^2 x \\
+    \frac{d}{dx} (\csc x)       &= -\csc x \cot x \\
+    \frac{d}{dx} (\sec x)       &= \sec x \tan x \\
+    \frac{d}{dx} (\cot x)       &= -\csc^2 x \\
+    \frac{d}{dx} (\arcsin x)    &= \frac{1}{\sqrt{1-x^2}} \\
+    \frac{d}{dx} (\arccos x)    &= -\frac{1}{\sqrt{1-x^2}} \\
+    \frac{d}{dx} (\arctan x)    &=\frac{1}{1+x^2} \\
+    \frac{d}{dx} \log |x|       &= \frac{1}{x} \\
+    \frac{d}{dx} b^x            &= b^x \log b \\
+    \frac{d}{dx} \log_b x       &=\frac{1}{x\log b} \\
+\end{align*}
+
+\end{multicols*}
+
+\end{document}
