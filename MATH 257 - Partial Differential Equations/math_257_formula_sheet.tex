@@ -1,0 +1,325 @@
+\documentclass[10pt]{article}
+%----------Packages----------
+\usepackage[utf8]{inputenc}
+\usepackage[landscape,left=5mm,right=5mm,top=5mm,bottom=4mm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage[shortlabels]{enumitem}
+
+%----------Page formatting----------
+\pagenumbering{gobble}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+%----------Symbols----------
+\newcommand{\ep}{\varepsilon}
+
+%----------General----------
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\everymath{\ds} % Displaystyle for all math environments
+\newcommand{\tab}{\hspace{.02\textwidth}}
+\newcommand{\twoEqn}[4]{$\makebox[#3][l]{$\ds #1$} \makebox[#4][l]{$\ds #2$}$}
+\newcommand{\threeEqn}[6]{$\makebox[#4][l]{$\ds #1$} \makebox[#5][l]{$\ds #2$} \makebox[#6][l]{$\ds #3$}$}
+\newcommand{\splittab}{\hspace{2.58ex}}
+
+%----------Math----------
+\renewcommand{\d}{\,\mathrm{d}}
+\newcommand{\inv}{^{-1}}
+
+%----------Brackets----------
+\newcommand{\lrb}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left[#1\right]}
+\newcommand{\abs}[1]{\left|#1\right|}
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+%----------Sections----------
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0ex}
+                                {-2ex}
+                                {0.7ex}
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0ex}
+                                {-0.4ex}
+                                {0.4ex}
+                                {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+
+%----------MATH 257----------
+\newcommand{\lap}{\Delta}
+
+%----------Document Begins Here----------
+\begin{document}
+
+\begin{center}
+    \LARGE{\textbf{MATH 257 Formula Sheet}}
+\end{center}
+
+\begin{multicols*}{3}
+
+\section{ODE Review}
+
+Separable ODEs: $y'=P(x)Q(y)$
+
+\tab $\int\frac{\d y}{Q(y)}=\int P(x)\d x+C$
+
+Integrating Factor: $y'+P(x)y=Q(x)$
+
+\tab $\mu(x)=e^{\int P(x)\d x}$
+
+\tab $y(x)=\frac{1}{\mu(x)}\sqb{\int\mu(x)Q(x)\d x+C}$
+
+Constant Coefficients: $ay''+by'+cy=0$
+
+\tab $y=e^{rx}\implies ar^2+br+c=0$
+
+\tab $y(x)=\begin{cases}
+    c_1e^{r_1x}+c_2e^{r_2x} & \Delta>0 \\
+    (c_1+c_2x)e^{r_0x} & \Delta=0 \\
+    e^{\lambda x}\sqb{c_1\cos(\mu x)+c_2\sin(\mu x)} & \Delta<0
+\end{cases}$
+
+Cauchy-Euler: $x^2y''+axy'+by=0$
+
+\tab $y=x^r\implies r(r-1)+ar+b=0$
+
+\tab $y(x)=\begin{cases}
+    c_1x^{r_1}+c_2x^{r_2} & \Delta>0 \\
+    (c_1+c_2\ln|x|)x^{r_0} & \Delta=0 \\
+    x^{\lambda}\sqb{c_1\cos(\mu\ln|x|)+c_2\sin(\mu\ln|x|)} & \Delta<0
+\end{cases}$
+
+\section{Series Solutions}
+
+Power Series: 
+
+\tab $f(x)=\sum_{n=0}^{\infty}a_n(x-x_0)^n$
+
+Ratio Test:
+
+\tab $\lim_{n\to\infty}\abs{\frac{a_{n+1}(x-x_0)^{n+1}}{a_n(x-x_0)^n}}=L$
+
+\tab $L<1$ implies convergence
+
+Taylor Series: 
+
+\tab \twoEqn{f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n}{e^x=\sum_{n=0}^\infty\frac{x^n}{n!}}{15.2em}{7em}
+
+\tab \twoEqn{\sin(x)=\sum_{n=0}^\infty(-1)^n\frac{x^{2n+1}}{(2n+1)!}}{\sinh(x)=\sum_{n=0}^\infty\frac{x^{2n+1}}{(2n+1)!}}{13em}{10em}
+
+\tab \twoEqn{\cos(x)=\sum_{n=0}^\infty(-1)^n\frac{x^{2n}}{(2n)!}}{\cosh(x)=\sum_{n=0}^\infty\frac{x^{2n}}{(2n)!}}{13em}{10em}
+
+Power Series Solution:
+
+\tab \twoEqn{y=\sum_{n=0}^\infty a_nx^n}{y'=\sum_{n=1}^\infty a_nnx^{n-1}}{10em}{10em}
+
+\tab $y''=\sum_{n=2}^\infty a_nn(n-1)x^{n-2}$
+
+\newcolumn
+
+Singular Points: $P(x)y''+Q(x)y'+R(x)y=0$
+
+\tab $x_0$ is a singular point if $P(x_0)=0$
+
+Polynomial Test for Regular Singular Points:
+
+\tab Finite $\lim_{x\to x_0}(x-x_0)\tfrac{Q(x)}{P(x)},\lim_{x\to x_0}(x-x_0)^2\tfrac{R(x)}{P(x)}\implies$ RSP
+
+Frobenius Series Solution:
+
+\tab \twoEqn{y=\sum_{n=0}^\infty a_nx^{n+r}}{y'=\sum_{n=0}^\infty a_n(n+r)x^{n+r-1}}{10em}{10em}
+
+\tab $y''=\sum_{n=0}^\infty a_n(n+r)(n+r-1)x^{n+r-2}$
+
+\section{PDE Intro}
+
+\begingroup
+\renewcommand{\arraystretch}{1.2}
+\[\begin{array}{|c|c|c|c|} \hline \text{Type} & \text{PDE} & \text{Surface} & \text{Name} \\ \hline 
+    \text{Parabolic} & u_t=u_{xx} & T=X^2 & \text{Heat} \\ \hline 
+    \text{Elliptic} & u_{xx}+u_{yy}=k & X^2+Y^2=k & \text{Laplace} \\ \hline 
+    \text{Hyperbolic} & u_{tt}=c^2u_{xx} & T^2=C^2X^2 & \text{Wave} \\ \hline
+\end{array}\]
+\endgroup
+Finite Difference Approximations:
+
+\tab $f'(x)=\frac{f(x+\Delta x)-f(x)}{\Delta x}+O(\Delta x)$
+
+\tab $f'(x)=\frac{f(x+\Delta x)-f(x-\Delta x)}{2\Delta x}+O(\Delta x^2)$
+
+\tab $f''(x)=\frac{f(x+\Delta x)-2f(x)+f(x-\Delta x)}{\Delta x^2}+O(\Delta x^2)$
+
+\tab $u_N^k$: position $N$, time $k$
+
+\section{Fourier Series}
+
+Fourier Series: $f(x)$ defined on $[-L,L]$
+
+\tab $Ff(x)=\frac{a_0}{2}+\sum_{n=1}^\infty\sqb{a_n\cos\lrb{\frac{n\pi x}{L}}+b_n\sin\lrb{\frac{n\pi x}{L}}}$
+
+\tab $\ts a_n=\frac 1L\int_{-L}^L f(x)\cos\lrb{\frac{n\pi x}{L}}\d x$
+
+\tab $\ts b_n=\frac 1L\int_{-L}^L f(x)\sin\lrb{\frac{n\pi x}{L}}\d x$
+
+Fourier Sine and Cosine Series: $f(x)$ defined on $[0,L]$
+
+\tab $Cf(x)=\frac{a_0}{2}+\sum_{n=1}^\infty a_n\cos\lrb{\frac{n\pi x}{L}}$
+
+\tab $\ts a_n=\frac 2L\int_{0}^L f(x)\cos\lrb{\frac{n\pi x}{L}}\d x$
+
+\tab $Sf(x)=\sum_{n=1}^\infty b_n\sin\lrb{\frac{n\pi x}{L}}$
+
+\tab $\ts b_n=\frac 2L\int_{0}^L f(x)\sin\lrb{\frac{n\pi x}{L}}\d x$
+
+\section{Boundary Value Problems $X''+\lambda^2 X=0$}
+
+Dirichlet: $X(0)=0=X(L)$
+
+\tab $\begin{cases}
+    \lambda_n=\tfrac{n\pi}{L},\quad n=1,2,\ldots \\
+    X_n(x)=\sin\lrb{\tfrac{n\pi x}{L}}
+\end{cases}$
+
+Neumann: $X'(0)=0=X'(L)$
+
+\tab $\begin{cases}
+    \lambda_n=\tfrac{n\pi}{L},\quad n=0,1,2,\ldots \\
+    X_n(x)=\cos\lrb{\tfrac{n\pi x}{L}}
+\end{cases}$
+
+Periodic: $X(-L)=X(L),X'(-L)=X'(L)$
+
+\tab $\begin{cases}
+    \lambda_n=\tfrac{n\pi}{L},\quad n=0,1,2\ldots \\
+    X_n(x)=\cos\lrb{\tfrac{n\pi x}{L}},\sin\lrb{\tfrac{n\pi x}{L}}
+\end{cases}$
+
+Mixed A: $X(0)=0=X'(L)$
+
+\tab $\begin{cases}
+    \lambda_n=\tfrac{(2n+1)\pi}{2L},\quad n=0,1,2,\ldots \\
+    X_n(x)=\sin\lrb{\tfrac{(2n+1)\pi x}{2L}}
+\end{cases}$
+
+Mixed B: $X'(0)=0=X(L)$
+
+\tab $\begin{cases}
+    \lambda_n=\tfrac{(2n+1)\pi}{2L},\quad n=0,1,2,\ldots \\
+    X_n(x)=\cos\lrb{\tfrac{(2n+1)\pi x}{2L}}
+\end{cases}$
+
+\section{Heat Equation $u_t=\alpha^2 u_{xx}$}
+
+Separation of Variables:
+
+\tab $\frac{\dot T}{\alpha^2 T}=\frac{X''}{X}=-\lambda^2 \implies T=e^{-\lambda^2 t}, X''+\lambda^2 X=0$
+
+Inhomogeneous Heat Equation: 
+
+\tab Use BC to find $w(x,t)$, then $u(x,t)=w(x,t)+v(x,t)$
+
+Eigenfunction Expansions:
+
+\tab $v(x,t)=\sum_{n=1}^\infty v_n(t)X_n(x)$, solve ODE for $v_n(t)$
+
+\section{Wave Equation $u_{tt}=c^2u_{xx}$}
+
+D'Alembert's Solution: $u(x,0)=f(x),u_t(x,0)=g(x)$
+
+\tab $u(x,t)=\frac{1}{2}[f(x+ct)+f(x-ct)]+\frac{1}{2c}\int_{x-ct}^{x+ct}g(s)\d s$
+
+Separation of Variables:
+
+\tab $\frac{\ddot T}{c^2 T}=\frac{X''}{X}=-\lambda^2 \implies\ddot T+\lambda^2 c^2 T=0, X''+\lambda^2 X=0$
+
+Physical Phenomena:
+
+\tab \twoEqn{\text{String: }c=\sqrt{T_0/\rho_0}}{\text{Bar: }c=\sqrt{E/\rho}}{11em}{11em}
+
+\section{Laplace's Equation $\lap u=0$}
+
+2D Cartesian:
+
+\tab $u_{xx}+u_{yy}=0$
+
+\tab $\frac{X''}{X}=-\frac{Y''}{Y}=\mathrm{const}$
+
+2D Polar:
+
+\tab $u_{rr}+\frac{1}{r}u_r+\frac{1}{r^2}u_{\theta\theta}=0$
+
+\tab $\frac{r^2R''+rR'}{R}=-\frac{\Theta''}{\Theta}=\lambda^2$
+
+$u(r,\theta)=[A_0+\alpha_0\ln r]+\sum_{n=1}^\infty\sqb{A_nr^{\lambda_n}+\alpha_nr^{-\lambda_n}}\cos(\lambda_n\theta)$
+
+$\hspace{3em}\splittab+\sum_{n=1}^\infty\sqb{B_nr^{\lambda_n}+\beta_nr^{-\lambda_n}}\sin(\lambda_n\theta)$
+
+\section{Sturm-Liouville}
+
+Sturm-Liouville Eigenvalue Problem:
+
+\tab $\begin{cases}
+    [p(x)y']'-q(x)y+\lambda r(x)y=0,\quad a<x<b \\
+    a_1y(a)+a_2y'(a)=0, \quad b_1y(b)+b_2y'(b)=0
+\end{cases}$
+
+Converting to SL Form:
+
+\tab $-P(x)y''-Q(x)y+R(x)y=\lambda y$
+
+\tab $\mu(x)P(x)=p(x)\text{ and }\mu(x)Q(x)=p'(x)$
+
+\tab $\mu(x)=\frac{e^{\int\frac QP\d x}}{P}$
+
+Eigenfunction Expansion: 
+
+\tab $f(x)=\sum_{n=1}^\infty c_n\phi_n(x), \quad a<x<b$
+
+\tab $c_n=\frac{\int_a^b f(x)\phi_n(x)r(x)\d x}{\int_a^b \phi_n^2(x)r(x)\d x}$
+
+\section{Identities}
+
+Double Angle:
+
+\tab $\sin 2x=2\sin x\cos x$
+
+\tab $\cos 2x=\cos^2 x-\sin^2 x$
+
+Squared Angle:
+
+\tab $\sin^2 x=\tfrac{1}{2}(1-\cos 2x)$
+
+\tab $\cos^2 x=\tfrac{1}{2}(1+\cos 2x)$
+
+Sum and Difference:
+
+\tab $\sin(x\pm y)=\sin x\cos y\pm\cos x\sin y$
+
+\tab $\cos(x\pm y)=\cos x\cos y\mp\sin x\sin y$
+
+Product to Sum:
+
+\tab $\cos x\cos y=\tfrac{1}{2}\lrb{\cos(x+y)+\cos(x-y)}$
+
+\tab $\sin x\sin y=\tfrac{1}{2}\lrb{\cos(x-y)-\cos(x+y)}$
+
+\tab $\sin x\cos y=\tfrac{1}{2}\lrb{\sin(x+y)+\sin(x-y)}$
+
+\tab $\cos x\sin y=\tfrac{1}{2}\lrb{\sin(x+y)-\sin(x-y)}$ 
+
+\rule{\linewidth}{0.1pt}
+
+\scriptsize 
+Updated \today
+
+\end{multicols*}
+
+\end{document}
