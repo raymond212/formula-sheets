@@ -1,0 +1,193 @@
+%----------Setup----------
+\documentclass[10pt]{article}
+\usepackage[landscape, total={10.8in,8in}]{geometry}
+\usepackage[utf8]{inputenc}
+\pagenumbering{gobble}
+\parindent=0pt
+
+%----------Packages----------
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{bm}
+\usepackage{tabu}
+
+%----------Headings----------
+\newcommand\sectionheading[1]{\begin{center}\large{\textbf{#1}}\end{center}\normalsize}
+\newcommand\heading[1]{\textbf{#1}}
+% \newcommand\heading[1]{\smallskip\textbf{#1}\smallskip}
+
+%----------Symbols----------
+\newcommand{\C}{{\mathsf C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\ka}{\kappa}
+\renewcommand{\phi}{\varphi}
+\newcommand{\ts}{\textsuperscript}
+
+%----------Linear Algebra----------
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\cond}{\mathrm{cond}}
+\newcommand{\vspan}{\mathrm{span}}
+
+%----------Vectors and Vector Fields----------
+\newcommand{\bv}[1]{\mathbf{#1}}                                % bolded vector
+\newcommand{\uv}[1]{{\bm{\hat{\textnormal{\bfseries #1}}}}}     % unit vector
+\newcommand{\ihat}{\uv{\i}}
+\newcommand{\jhat}{\uv{\j}}
+\newcommand{\khat}{\uv{k}}
+\newcommand{\F}{\bv F}
+\newcommand{\G}{\bv G}
+\renewcommand{\N}{\uv N}
+\newcommand{\T}{\uv T}
+\newcommand{\B}{\uv B}
+\newcommand{\n}{\uv n}
+\newcommand{\x}{\bv x}
+\newcommand{\y}{\bv y}
+\renewcommand{\b}{\bv b}
+\renewcommand{\r}{\bv r}
+\renewcommand{\v}{\bv v}
+
+%----------Other----------
+\newcommand{\ds}{\displaystyle}
+\newcommand{\agb}[1]{\left\langle #1 \right\rangle} 
+\newcommand{\lrb}[1]{\left( #1 \right)}          
+\newcommand{\set}[1]{\left\{ #1\right\}}
+
+%----------Info----------
+\newcommand*{\course}{MATH 307} 
+
+%----------Document Begins Here----------
+\begin{document}
+
+\begin{center}
+    \huge{\textbf{\course \ Formula Sheet}}
+\end{center}
+
+\begin{multicols*}{2}
+
+\sectionheading{LU Decomposition}
+
+$A=LU$
+
+Properties
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item $\rank(A)=\rank(U)$
+    \item If $A$ is square, then $\det(A)=\det(U)$
+\end{itemize}
+
+\sectionheading{Norms}
+
+\heading{Vector Norms}
+
+\heading{Frobenius Norm}
+
+\[\norm A_F=\lrb{\sum_{i=1}^m\sum_{j=1}^n |a_{i,j}|^2}^{1/2}\]
+
+\heading{Matrix Norm}
+
+\[\norm A=\max_{\x\ne\bv 0}\lrb{\frac{\norm{A\x}}{\norm\x}}=\max_{\norm\x=1}\norm{A\x}\]
+
+\[\norm{A\inv}=\frac{1}{\ds\min_{\norm\x=1}\norm{A\x}}\]
+
+\[\cond(A)=\norm A\norm{A\inv}=\frac{\text{max stretch}}{\text{min stretch}}\]
+
+\[\frac{\norm{\Delta\x}}{\norm\x}\le\cond(A)\frac{\norm{\Delta\b}}{\norm\b}\]
+
+\sectionheading{Interpolation}
+
+\heading{Polynomial Interpolation}
+
+For $d+1$ points $(t_0,y_0),(t_1,y_1),\ldots,(t_d,t_d)$,
+\[p(t)=c_0+c_1t+\cdots+c_dt^d\]
+
+\heading{Cubic Spline Interpolation}
+\[p_k(t)=a_k(t-t_{k-1})^3+b_k(t-t_{k-1})^2+c_k(t-t_{k-1})+d\]
+\[a_k+b_k+c_k+d_k=d_{k+1}\]
+\[3a_k+2b_k+c_k=c_{k+1}\]
+\[6a_k+2b_k=2b_{k+1}\]
+
+{\footnotesize\[\begin{split}
+\renewcommand{\arraystretch}{1.5}
+\left[ \begin{array}{c|c|c|c|c}
+A(L_1) & B & & & \\ \hline
+& A(L_2) & B & & \\ \hline
+& & \ddots & \ddots & \phantom{A(L_{N-1})} \\ \hline
+\phantom{A(L_{N-1})} & \phantom{A(L_{N-1})} & \phantom{A(L_{N-1})} & A(L_{N-1}) & B \\ \hline
+T & & & & V
+\end{array} \right]
+\renewcommand{\arraystretch}{1}
+\begin{bmatrix} a_1 \\ b_1 \\ c_1 \\ \vdots \\ a_N \\ b_N \\ c_N \end{bmatrix}
+=
+\begin{bmatrix} y_1 - y_0 \\ 0 \\ 0 \\ \vdots \\ y_N - y_{N-1} \\ 0 \\ 0 \end{bmatrix}
+\end{split}\]}
+\[\begin{split}
+A(L) = \begin{bmatrix} L^3 & L^2 & L \\ 3L^2 & 2L & 1 \\ 6L & 2 & 0 \end{bmatrix}
+\ \
+B = \left[ \begin{array}{rrr} 0 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & -2 & 0 \end{array} \right]
+\end{split}\]
+\[\begin{split}
+A(L) = \begin{bmatrix} L^3 & L^2 & L \\ 3L^2 & 2L & 1 \\ 6L & 2 & 0 \end{bmatrix}
+\ \
+B = \left[ \begin{array}{rrr} 0 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & -2 & 0 \end{array} \right]
+\end{split}\]
+
+\sectionheading{Differential Equations}
+\[y''+p(t)y'+q(t)y=r(t)\]
+\[y(t_0)=\alpha\qquad y(t_f)=\beta\]
+\[h=\frac{t_f-t_0}{N+1}\]
+
+Approximation to $y''=r(t)$: solve $A\y=\b$.
+
+\[\begin{split}
+A = \begin{bmatrix}
+-2 & 1 & & & \\
+1 & -2 & 1 & & \\
+& & \ddots & & \\
+& & 1 & -2 & 1 \\
+& & & 1 & -2
+\end{bmatrix}
+\qquad
+\b =
+\begin{bmatrix}
+h^2 r_1 - \alpha \\ h^2 r_2 \\ \vdots \\ h^2 r_{N-1} \\ h^2 r_N - \beta
+\end{bmatrix}
+\end{split}\]
+
+General approximation: solve $A\y=\b$.
+\[\begin{split}
+A = \begin{bmatrix}
+b_1 & c_1 & & & \\
+a_2 & b_2 & c_2 & & \\
+& & \ddots & & \\
+& & a_{N-1} & b_{N-1} & c_{N-1} \\
+& & & a_N & b_N
+\end{bmatrix}
+\qquad
+\b =
+\begin{bmatrix}
+h^2 r_1 -a_1 \alpha \\ h^2 r_2 \\ \vdots \\ h^2 r_{N-1} \\ h^2 r_N - c_N \beta
+\end{bmatrix}
+\end{split}\]
+\[a_k = 1 - \frac{h p_k}{2}
+\qquad
+b_k = h^2q_k - 2
+\qquad
+c_k = 1 + \frac{h p_k}{2}\]
+
+\sectionheading{Vector Spaces}
+\[N(A)=\set{\x\in\R^n: A\x=\bv 0}\]
+\[R(A)=\set{A\x:\x\in\R^n}=\vspan\set{\text{columns of }A}\]
+\[\dim(R(A))=\rank(A)\]
+\[R(A)=\vspan\set{l_1,\ldots,l_r}\]
+\[\dim(R(A))+\dim(N(A))=n\]
+
+\end{multicols*}
+
+\end{document}\textbf{}
