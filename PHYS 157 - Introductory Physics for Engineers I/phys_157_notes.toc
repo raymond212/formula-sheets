@@ -1,0 +1,52 @@
+\contentsline {section}{\numberline {1}Temperature}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Temperature and Thermal Equilibrium}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Temperature Scales}{2}{}%
+\contentsline {subsubsection}{\numberline {1.2.1}Celsius and Fahrenheit Scales}{2}{}%
+\contentsline {subsubsection}{\numberline {1.2.2}Kelvin Scale}{2}{}%
+\contentsline {section}{\numberline {2}Thermal Expansion, Stress, and Strain}{3}{}%
+\contentsline {subsection}{\numberline {2.1}$\Delta L$ due to $\Delta T$}{3}{}%
+\contentsline {subsection}{\numberline {2.2}$\Delta V$ due to $\Delta T$}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Young's Modulus}{3}{}%
+\contentsline {subsection}{\numberline {2.4}$\Delta L$ due to $\Delta T$ and $\Delta F$}{3}{}%
+\contentsline {section}{\numberline {3}Heat and Temperature/Phase Change}{3}{}%
+\contentsline {subsection}{\numberline {3.1}Heat of Temperature Change}{3}{}%
+\contentsline {subsection}{\numberline {3.2}Heat of Phase Change}{3}{}%
+\contentsline {section}{\numberline {4}Heat Flow: Conduction and Convection}{3}{}%
+\contentsline {subsection}{\numberline {4.1}Heat Conduction}{3}{}%
+\contentsline {subsection}{\numberline {4.2}Thermal Resistance}{3}{}%
+\contentsline {section}{\numberline {5}Radiation}{4}{}%
+\contentsline {subsection}{\numberline {5.1}Radiation}{4}{}%
+\contentsline {subsection}{\numberline {5.2}Net Radiation}{4}{}%
+\contentsline {subsection}{\numberline {5.3}Intensity at Distance $R$}{4}{}%
+\contentsline {subsection}{\numberline {5.4}Wien Displacement Law}{4}{}%
+\contentsline {section}{\numberline {6}Thermodynamic Processes, Work, Heat, and Internal Energy}{4}{}%
+\contentsline {subsection}{\numberline {6.1}Ideal Gas Law}{4}{}%
+\contentsline {subsection}{\numberline {6.2}Work Done by Gas}{4}{}%
+\contentsline {subsection}{\numberline {6.3}First Law of Thermodynamics}{4}{}%
+\contentsline {subsection}{\numberline {6.4}Internal Energy}{5}{}%
+\contentsline {subsection}{\numberline {6.5}Thermodynamic Processes}{5}{}%
+\contentsline {subsubsection}{\numberline {6.5.1}Isochoric}{5}{}%
+\contentsline {subsubsection}{\numberline {6.5.2}Isobaric}{5}{}%
+\contentsline {subsubsection}{\numberline {6.5.3}Isothermal}{5}{}%
+\contentsline {subsubsection}{\numberline {6.5.4}Adiabatic}{5}{}%
+\contentsline {section}{\numberline {7}Cyclic Thermodynamic Processes, Heat Engines, and Refrigerators}{6}{}%
+\contentsline {subsection}{\numberline {7.1}Cyclic Processes}{6}{}%
+\contentsline {subsection}{\numberline {7.2}Heat Engines}{6}{}%
+\contentsline {subsubsection}{\numberline {7.2.1}Otto Cycle}{6}{}%
+\contentsline {subsubsection}{\numberline {7.2.2}Diesel Cycle}{7}{}%
+\contentsline {subsection}{\numberline {7.3}Refrigerators}{7}{}%
+\contentsline {section}{\numberline {8}Entropy}{7}{}%
+\contentsline {subsection}{\numberline {8.1}Microscopic Definition of Entropy}{7}{}%
+\contentsline {subsection}{\numberline {8.2}Macroscopic Definition of Entropy}{8}{}%
+\contentsline {subsection}{\numberline {8.3}Second Law of Thermodynamics}{8}{}%
+\contentsline {subsection}{\numberline {8.4}T-S Diagrams}{8}{}%
+\contentsline {subsection}{\numberline {8.5}Carnot Cycle}{8}{}%
+\contentsline {section}{\numberline {9}Periodic Motion}{8}{}%
+\contentsline {subsection}{\numberline {9.1}Describing Oscillations}{8}{}%
+\contentsline {subsection}{\numberline {9.2}Simple Harmonic Motion}{9}{}%
+\contentsline {subsection}{\numberline {9.3}Displacement, Velocity, and Acceleration}{9}{}%
+\contentsline {subsection}{\numberline {9.4}Energy in Simple Harmonic Motion}{9}{}%
+\contentsline {subsection}{\numberline {9.5}Damped Oscillations}{9}{}%
+\contentsline {subsection}{\numberline {9.6}Effective Spring Constant}{9}{}%
+\contentsline {section}{\numberline {10}Waves}{9}{}%
+\contentsline {subsection}{\numberline {10.1}Periodic Waves}{9}{}%
