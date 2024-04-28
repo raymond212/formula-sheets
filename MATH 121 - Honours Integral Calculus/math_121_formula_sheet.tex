@@ -1,0 +1,306 @@
+\documentclass[10pt]{article}
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage[landscape, total={10.8in,8in}]{geometry}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{array}
+% Page formatting
+\pagenumbering{gobble}
+\parindent=0pt
+% Symbols
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\ep}{\varepsilon}
+
+% Heading
+\newcommand\sectionheading[1]{\begin{center}\large{\textbf{#1}}\end{center}\normalsize}
+\newcommand\heading[1]{\smallskip\textbf{#1}\smallskip}
+% \newcommand\heading[1]{\textbf{#1}}
+
+\begin{document}
+
+\begin{center}
+    \huge{\textbf{MATH 121 Formula Sheet}}
+\end{center}
+
+\begin{multicols*}{3}
+
+\sectionheading{Integral Facts}
+\[\int_{a}^{b}f(x)\,dx=\lim_{n\to\infty}\sum_{i=1}^{n}f(x_i^*)\Delta x\]
+
+Fundamental Theorem of Calculus
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item Part 1: Define $F(x)=\int_a^x f(t)\,dt$, then $F'(x)=f(x)$.
+    \item Part 2: If $F(x)$ is an antiderivative of $f(x)$, then $\int_a^b f(t)\,dt = F(b)-F(a)$.
+\end{itemize}
+
+\sectionheading{Integration Techniques}
+
+\heading{Substitution}
+
+\[\int f(g(x))g'(x)\,dx = \int f(u)\,du \text{ where } u=g(x)\]
+
+% \[\int_{a}^{b}f(g(x))g'(x)\,dx = \int_{g(a)}^{g(b)}f(u)\,du\]
+
+\heading{Integration by Parts}
+
+\[\int f(g)g'(x)\,dx=f(x)g(x)-\int f'(x)g(x)\,dx\]
+
+\[\int u\,dv = uv - \int v\,du\]
+
+\heading{Trig Integrals}
+
+\[\int \sin^m x \cos^n x\,dx\]
+
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $m$ is odd: use $\sin x$ times power of $\sin^2 x=1-\cos^2 x$, then $u=\cos x$
+    \item $n$ is odd: use $\cos x$ times power of $\cos^2 x=1-\sin^2 x$, then $u=\sin x$
+    \item Both are even: use $\cos^2 x=\frac{1+\cos2x}{2}$ and $\sin^2 x=\frac{1-\cos2x}{2}$, and restart
+\end{itemize}
+
+\[\int \tan^m x \sec^n x\,dx\]
+
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $n$ is even: use $\sec^2 x$ times power of $\sec^2 x=\tan^2 x+1$, then $u=\tan x$
+    \item $m$ is odd: use $\tan x$ times power of $\tan^2 x=\sec^2 x-1$, then $u=\sec x$
+\end{itemize}
+
+\heading{Universal Trig Sub}
+
+If $\displaystyle t=\tan\frac x2$, then 
+\[dx=\frac{2}{1+t^2}\,dt \text{ and } \sin x=\frac{2t}{1+t^2} \text{ and } \cos x=\frac{1-t^2}{1+t^2}\]
+
+\heading{Trig Substitution}
+
+$\begin{array}{|c|c|c|}
+    \hline
+    \sqrt{a^2+x^2} & 1+\tan^2\theta=\sec^2\theta & x=a\tan\theta \\
+    \hline
+    \sqrt{a^2-x^2} & 1-\sin^2\theta=\cos^2\theta & x=a\sin\theta \\
+    \hline
+    \sqrt{x^2-a^2} & \sec^2\theta-1=\tan^2\theta & x=a\sec\theta \\
+    \hline
+\end{array}$
+
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item May need to complete the square first.
+    \item Change $\theta$ back to $x$. 
+\end{itemize}
+
+\heading{Partial Fractions}
+
+{\footnotesize
+\[\frac{P(x)}{(x-r_1)(x-r_2)\cdots(x-r_n)}=\frac{A_1}{x-r_1}+\frac{A_2}{x-r_2}+\cdots+\frac{A_n}{x-r_n}\]}
+
+$(x-r)^m$ corresponds to $\displaystyle\frac{A_1}{x-r}+\frac{A_2}{(x-r)^2}+\cdots+\frac{A_m}{(x-r)^m}$
+
+$ax^2+bx+c$ corresponds to $\frac{Ax+B}{ax^2+bx+c}$
+
+\sectionheading{Numerical Integration}
+
+\heading{Midpoint Rule}
+\[x_i^\dagger=\frac{x_{i-1}+x_i}{2}\]
+\[M_n=\sum_{i=1}^{n}f(x_i^{\dagger})\Delta x=\Delta x(f(x_1^{\dagger})+f(x_2^{\dagger})+\cdots+f(x_n^\dagger))\]
+
+\heading{Trapezoid Rule}
+{\small
+\[T_n = \frac{\Delta x}{2}(1f(x_0)+2f(x_1)+\cdots+2f(x_{n-1})+1f(x_n))\]}
+
+\heading{Simpson's Rule}
+{\footnotesize
+\[S_n=\frac{\Delta x}{3}(1f(x_0)+4f(x_1)+2f(x_2)+\cdots+4f(x_{n-1})+1f(x_n))\]}
+
+\heading{Error}
+
+Exists $c_1\in(a,b)$ s.t. $\displaystyle\int_{a}^{b}f(x)\,dx-M_n=\frac{f''(c_1)}{24}\frac{(b-a)^3}{n^2}$
+
+Exists $c_2\in(a,b)$ s.t. $\displaystyle\int_{a}^{b}f(x)\,dx-T_n=-\frac{f''(c_2)}{12}\frac{(b-a)^3}{n^2}$
+
+If $|f''(c)|\leq M$ for all $c\in(a,b)$, then 
+\[\biggl|\int_{a}^{b}f(x)\,dx-M_n\biggr|\leq\frac{M}{24}\frac{(b-a)^3}{n^2}\]
+\[\biggl|\int_{a}^{b}f(x)\,dx-T_n\biggr|\leq\frac{M}{12}\frac{(b-a)^3}{n^2}\]
+
+If $|f^{(4)}(c)|\leq L$ for all $c\in(a,b)$, then for any even $n\geq 2$,
+\[\biggl|\int_{a}^{b}f(x)\,dx-S_n\biggr|\leq\frac{L}{180}\frac{(b-a)^5}{n^4}\]
+
+\sectionheading{Improper Integrals}
+\[\int_{a}^{\infty}f(x)\,dx=\lim_{t\to\infty}\int_{a}^{t}f(x)\,dx\]
+
+Discontinuous at $x=a$:
+
+\[\int_{a}^{b}f(x)\,dx=\lim_{t\to a^+}\int_{t}^{b}f(x)\,dx\]
+
+$\displaystyle\int_a^\infty\frac{1}{x^p}\,dx$ converges when $p>1$ and diverges when $p\leq 1$.
+
+$\displaystyle\int_0^{a}\frac{1}{x^p}\,dx$ converges when $p< 1$ and diverges when $p\geq 1$.
+
+\heading{Limit Comparison Test}
+
+Assume $f(x)>0$ and $g(x)>0$. If $\lim_{x\to\infty}\frac{f(x)}{g(x)}$ exists and is nonzero, then $\int_{a}^{\infty}f(x)\,dx$ and $\int_{a}^{\infty} g(x)\,dx$ either both converge or both diverge. 
+
+\sectionheading{Integration Applications}
+
+\heading{Volumes}
+
+Disk: $V=\int_{a}^{b}\pi R(x)^2\,dx$
+
+Washer: $V=\int_{a}^{b}\pi(R(x)^2-r(x)^2)\,dx$
+
+Shells: $V=\int_{a}^{b}2\pi R(x) h(x)\,dx$
+
+\heading{Average Value}
+\[\frac{1}{b-a}\int_{a}^{b}f(x)\,dx\]
+
+\heading{Work}
+\[W=\int_a^b F(x)\,dx\]
+
+Hooke's Law: $F=kx$
+
+Gravity: $W=mgh=\rho Vgh$
+
+\heading{Center of Mass}
+{\small
+\[\biggl(\frac{N_x}{M},\frac{N_y}{M}\biggr) \text{ where } M=\sum_{i=1}^n m_i, N_x=\sum_{i=1}^n m_i x_i, N_y=\sum_{i=1}^n m_i y_i\]}
+
+$M=\int_a^b \rho\cdot f(x)\,dx$
+
+$N_x=\int_a^b \rho\cdot x(f(x)-g(x))\,dx$
+
+$N_y=\int_a^b \rho\cdot\frac12 (f(x)^2-g(x)^2)\,dx$
+
+\sectionheading{Differential Equations}
+
+Separate: write $\frac{dy}{dx}=\frac{g(x)}{h(y)}$ as $h(y)\,dy=g(x)\,dx$, then integrate
+
+Word problems: express $A'(t)$ in terms of $A(t)$, then solve.
+
+\sectionheading{Sequences}
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $\{a_n\}$ has limit $L$: $\lim_{n\to\infty}a_n=L$.
+    \item If $a_n$ is given by $f(n)$ and $\lim_{n\to\infty}f(x)=L$, then $\lim_{n\to\infty} f(x)=L$.
+    \item Squeeze Theorem: $l_n\leq a_n\leq b_n$, then if $\lim_{n\to\infty}l_n=L$ and $\lim_{n\to\infty}b_n=L$, then $\lim_{n\to\infty}a_n=L$.
+\end{itemize}
+
+\sectionheading{Series}
+\[\sum_{n=1}^{\infty}a_n=\lim_{N\to\infty}\sum_{n=1}^{N}a_n=\lim_{N\to\infty}s_N\]
+\[a_n=s_n-s_{n-1}\]
+
+\heading{Test for Divergence}
+
+If $\{a_n\}$ does not converge to $0$, then $\sum_{n=1}^{\infty}a_n$ diverges.
+
+\heading{Integral Test}
+
+If $f(x)$ is positive and decreasing,
+
+$\displaystyle\sum_{n=1}^{\infty}f(n)$ converges if and only if $\displaystyle\int_{1}^{\infty}f(x)\,dx$ converges.
+
+\heading{Geometric Series}
+
+$\displaystyle\sum_{n=0}^{\infty}ar^n=\frac{a}{1-r}$ converges if and only if $|r|<1$.
+
+\heading{$p$-Series}
+
+$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^p}$ converges if and only if $p>1$.
+
+\heading{Comparison Tests for Infinite Series}
+
+Suppose $b_n\geq 0$ always.
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item If $\sum_{n=1}^\infty b_n$ converges and $|a_n|\leq b_n$, then $\sum_{n=1}^\infty a_n$ converges 
+    \item If $\sum_{n=1}^\infty b_n$ diverges and $a_n\geq b_n$, then $\sum_{n=1}^\infty a_n$ diverges 
+\end{itemize}
+
+\heading{Limit Comparison Test}
+
+Suppose $b_n > 0$ always, and assume $\displaystyle\lim_{n\to\infty}\frac{a_n}{b_n}=L$ exists.
+
+If $L\neq 0$, then $\displaystyle\sum_{n=1}^\infty a_n$ converges if and only if $\displaystyle\sum_{n=1}^\infty b_n$ converges.
+
+\heading{Alternating Series Test}
+
+Suppose $\{u_n\}$ is nonnegative, decreasing and $\lim_{n\to\infty}u_n=0$. Then 
+\[\sum_{n=1}^{\infty}a_n=\sum_{n=1}^{\infty}(-1)^n u_n\] 
+converges.
+
+Error: $\big|\sum_{n=1}^{\infty}a_n-s_N\big|\leq |a_{N+1}|$ (absolute value of first ommited term)
+
+\heading{Absolute and Conditional Convergence}
+
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item Absolutely convergence: $\sum_{n=1}^{\infty} |a_n|$ converges
+    \item Conditional convergence: $\sum_{n=1}^{\infty} a_n$ converges but $\sum_{n=1}^{\infty} |a_n|$ diverges 
+    \item Absolutely convergent $\implies$ convergent
+\end{itemize}
+
+\heading{Ratio Test}
+
+Suppose $\lim_{n\to\infty}\Bigl|\frac{a_{n+1}}{a_n}\Bigr|=r$.
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item If $0\leq r<1$, then $\sum_{n=1}^{\infty} a_n$ converges absolutely 
+    \item If $r>1$, then $\sum_{n=1}^{\infty} a_n$ diverges 
+    \item If $r=1$, inconclusive
+\end{itemize}
+
+\heading{Root Test}
+
+Suppose $\lim_{n\to\infty}\sqrt[n]{|a_n|}=r$. Same conclusion as Ratio Test.
+
+\sectionheading{Power Series}
+
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item General form: $\sum_{n=0}^{\infty}A_n (x-c)^n$
+    \item Radius of convergence: $R=\lim_{n\to\infty}\Big|\frac{A_n}{A_{n+1}}\Big|$
+    \item Endpoints must be tested separately
+\end{itemize}
+
+\sectionheading{Taylor Series}
+Taylor series:
+{\small
+\[\sum_{n=0}^\infty \frac{f^{(n)}(c)}{n!}(x-c)^n=f(c)+f'(c)(x-c)+\frac{f''(c)}{2!}(x-c)^2+\cdots\]}
+Maclaurin series:
+\[\sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!}x^n=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\cdots\]
+
+\heading{Maclaurin Series that converge for all $x\in\R$}
+
+\[e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots=\sum_{n=0}^\infty \frac{x^n}{n!}\]
+\[\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots=\sum_{m=0}^{\infty}(-1)^m \frac{x^{2m+1}}{(2m+1)!}\]
+\[\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\cdots=\sum_{m=0}^{\infty}(-1)^m \frac{x^{2m}}{(2m)!}\]
+
+\heading{Maclaurin Series with $R=1$}
+
+\[\frac{1}{1-x}=1+x+x^2+x^3+\cdots=\sum_{n=0}^\infty x^n\]
+\[\arctan x=x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots=\sum_{m=0}^{\infty}(-1)^m \frac{x^{2m+1}}{2m+1}\]
+\[\log(1-x)=-x-\frac{x^2}{2}-\frac{x^3}{3}-\frac{x^4}{4}-\cdots=-\sum_{n=1}^{\infty}\frac{x^n}{n}\]
+
+\sectionheading{Identities and Derivatives}
+\heading{Trig}
+\[\cos(2x)=\cos^2 x-\sin^2 x \quad \sin(2x)=2\sin x\cos x\]
+\[\sin(x\pm y)=\sin x \cos y \pm \cos x \sin y\]
+\[\cos(x\pm y)=\cos x \cos y \mp \sin x \sin y\]
+\[\tan(x\pm y)=\frac{\tan x \pm \tan y}{1 \mp \tan x \tan y}\]
+\heading{Derivatives} 
+\begin{multicols*}{2}
+\[\frac{d}{dx} (\tan x)=\sec^2 x\]
+\[\frac{d}{dx} (\csc x)=-\csc x \cot x\]
+\[\frac{d}{dx} (\sec x)=\sec x \tan x\]
+\[\frac{d}{dx} (\cot x)=-\csc^2 x\]
+\[\frac{d}{dx} (\arcsin x)=\frac{1}{\sqrt{1-x^2}}\]
+\[\frac{d}{dx} (\arccos x)=-\frac{1}{\sqrt{1-x^2}}\]
+\[\frac{d}{dx} (\arctan x)=\frac{1}{1+x^2}\]
+\[\frac{d}{dx} \log |x| = \frac{1}{x}\]
+\[\frac{d}{dx} b^x = b^x \log b\]
+\[\frac{d}{dx} \log_b x=\frac{1}{x\log b}\]
+\end{multicols*}
+
+\end{multicols*}
+
+\end{document}
