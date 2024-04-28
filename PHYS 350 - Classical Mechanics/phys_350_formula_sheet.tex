@@ -1,0 +1,300 @@
+\documentclass[10pt]{article}
+%----------Packages----------
+\usepackage[utf8]{inputenc}
+\usepackage[landscape,left=5mm,right=5mm,top=5mm,bottom=4mm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage[shortlabels]{enumitem}
+
+%----------Page formatting----------
+\pagenumbering{gobble}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+%----------Symbols----------
+\newcommand{\ep}{\varepsilon}
+
+%----------General----------
+\newcommand{\ds}{\displaystyle}
+\newcommand{\ts}{\textstyle}
+\everymath{\ds} % Displaystyle for all math environments
+\newcommand{\tab}{\hspace{.02\textwidth}}
+\newcommand{\twoEqn}[4]{$\makebox[#3][l]{$\ds #1$} \makebox[#4][l]{$\ds #2$}$}
+\newcommand{\threeEqn}[6]{$\makebox[#4][l]{$\ds #1$} \makebox[#5][l]{$\ds #2$} \makebox[#6][l]{$\ds #3$}$}
+\newcommand{\splittab}{\hspace{2.58ex}}
+
+%----------Math----------
+\newcommand{\inv}{^{-1}}
+
+%----------Differentiation----------
+\renewcommand{\d}{\,\mathrm{d}}
+\newcommand{\p}{\partial}
+\newcommand{\dv}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\ddv}[2]{\frac{\mathrm{d}^2 #1}{\mathrm{d} #2^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+%----------Brackets----------
+\newcommand{\lrb}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left[#1\right]}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\agb}[1]{\left\langle#1\right\rangle}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+%----------Sections----------
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0ex}
+                                {-2ex}
+                                {0.7ex}
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0ex}
+                                {-0.4ex}
+                                {0.4ex}
+                                {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+
+%----------PHYS 350----------
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\phi}{\varphi}
+\newcommand{\pbrack}[2]{\left\{#1,#2\right\}}
+\newcommand{\CM}{\text{CM}}
+\newcommand{\eff}{\text{eff}}
+
+\newcommand{\bv}[1]{\boldsymbol{#1}}
+\newcommand{\tp}{^T} % transpose
+
+\newcommand{\x}{\boldsymbol{x}}
+\renewcommand{\r}{\boldsymbol{r}}
+
+%----------Document Begins Here----------
+\begin{document}
+
+\begin{center}
+    \LARGE{\textbf{PHYS 350 Formula Sheet}}
+\end{center}
+
+\begin{multicols*}{3}
+
+\section{Lagrangian}
+
+Lagrangian:
+
+\tab $\L(q,\dot q,t)=T-U$
+
+\tab $T=\frac 12m(\dot x^2+\dot y^2+\dot z^2)$
+
+Euler-Lagrange Equation:
+
+\tab $\lrb{\pd{\L}{\dot q_i}}^\bullet=\pd{\L}{q_i}$
+
+Beltrami Identity ($\dot\L=0$):
+
+\tab $E=\sum_i\pd{\L}{\dot q_i}\dot q_i-\L$
+
+\section{Hamiltonian}
+
+Hamiltonian Principle:
+
+\tab $S=\int_{t_1}^{t_2}\L(q(t),\dot q(t),t)\d t$
+
+Light:
+
+\tab \twoEqn{\cos(\theta_{\max})=\frac{n_{\min}}{n_{\max}}}{n_1\sin(\theta_1)=n_2\sin(\theta_2)}{10em}{10em}
+
+Conjugate Momenta and Hamiltonian:
+
+\tab \twoEqn{p_i:=\pd{\L}{\dot q_i}}{H(q,p,t)=\sum_i\dot q_i p_i-\L}{10em}{10em}
+
+Solve $p_i=\pd{\L}{\dot q_i}$ for $\dot q_i$ and substitute
+
+Hamilton's (Cannonical) Equations:
+
+\tab \twoEqn{\dot q_i=\pd{H}{p_i}=\pbrack{q_i}{H}}{\dot p_i=-\pd{H}{q_i}=\pbrack{p_i}{H}}{10em}{10em}
+
+Poisson Bracket:
+
+\tab $\pbrack{A(q,p)}{B(q,p)}=\sum_i\lrb{\pd{A}{q_i}\pd{B}{p_i}-\pd{A}{p_i}\pd{B}{q_i}}$
+
+\tab $\dv At=\pbrack AH+\pd At$
+
+\tab $\pbrack AH=0\implies A\text{ is conserved}$
+
+\section{Orbital Mechanics}
+
+Kinetic Energy:
+
+\tab $T=\frac 12M|\dot\x_{\CM}|^2+\frac 12\frac{m_1m_2}{m_1+m_2}|\dot\r|^2$
+
+Reduced Mass:
+
+\tab $\mu=\frac{m_1m_2}{m_1+m_2}$
+
+Central Potential:
+
+\tab $\L=\frac 12\mu|\dot\r|^2-U(|\r|)$
+
+Effective Potential Energy:
+
+\tab $E=\frac 12m\dot r^2+\underbrace{\frac{L^2}{2mr^2}+U(r)}_{U_{\eff}(r)}$
+
+Gravitational Orbit:
+
+\tab $U(r)=-\frac{\alpha}{r}=-\frac{GMm}{r}$
+
+\tab $r_{\min,\max}=\frac{\alpha\pm\sqrt{\alpha^2-2|E|L^2/m}}{2|E|}$
+
+\tab \twoEqn{\frac{b^2}{ar}=1+e\cos\theta}{e=\frac ca}{10em}{10em}
+
+\tab \threeEqn{a=\frac{\alpha}{2\abs E}}{b=\frac{L}{\sqrt{2m\abs{E}}}}{c^2=a^2-b^2}{6em}{8em}{7em}
+
+\tab $T=2\pi a^{3/2}\sqrt{m/\alpha}$
+
+Integrals for Time and Angle:
+
+\tab $t=\int_{r(0)}^{r(t)}\frac{\d r}{\dot r}=\int_{r(0)}^{r(t)}\frac{\d r}{\sqrt{\frac 2m\lrb{E-\frac{L^2}{2mr^2}-U(r)}}}$
+
+\tab $\phi(t)=\int_{r(0)}^{r(t)}\frac{\dot\phi\d r}{\dot r}=\int_{r(0)}^{r(t)}\frac{L\d r}{r^2\sqrt{\frac 2m\lrb{E-\frac{L^2}{2mr^2}-U(r)}}}$
+
+\section{Rigid Body and Rotations}
+
+Inertial Tensor:
+
+$I=\begin{bmatrix}
+    \ts\sum m_i(y_i^2+z_i^2) & \ts-\sum m_i x_i y_i & \ts-\sum m_i x_i z_i \\
+    \ts-\sum m_i x_i y_i & \ts\sum m_i(x_i^2+z_i^2) & \ts-\sum m_i y_i z_i \\
+    \ts-\sum m_i x_i z_i & \ts-\sum m_i y_i z_i & \ts\sum m_i(x_i^2+y_i^2)
+\end{bmatrix}$
+
+\tab $T=\frac 12MV^2+\frac 12\Omega\tp I\Omega=\frac 12mv^2+\frac 12I\dot\theta^2$
+
+Angular Momentum:
+
+\tab $\bv L=M\bv X\times\bv V+I\bv\Omega$
+
+Time Evolution of Inertial Tensor:
+
+\tab $I(t)=R(t)I(0)R(t)\tp$
+
+Parallel Axis Theorem:
+
+\tab $I=I_{\CM}+Md^2$
+
+Torque:
+
+\tab $\bv\tau=\dot{\bv L}=\bv\Omega\times\bv L(t)+I(t)\dot{\bv\Omega}$
+
+Euler Equations for Diagonal Tensor $I=(\lambda_1,\lambda_2,\lambda_3)$:
+
+\tab $\lambda_1\dot\Omega_1-(\lambda_2-\lambda_3)\Omega_2\Omega_3=\tau_1$
+
+\tab $\lambda_2\dot\Omega_2-(\lambda_3-\lambda_1)\Omega_3\Omega_1=\tau_2$
+
+\tab $\lambda_3\dot\Omega_3-(\lambda_1-\lambda_2)\Omega_1\Omega_2=\tau_3$
+
+Precession $\Omega_p$:
+
+\tab $\dot{\bv\Omega}=\bv\Omega_p\times\bv\Omega$
+
+Kinetic Energy of Top with $I_1=I_2$:
+
+\tab $KE=\frac 12I_1(\sin^2\theta\dot\phi^2+\dot\theta^2)+\frac 12I_3(\dot\psi+\dot\phi\cos\theta)^2$
+
+\section{Coupled Oscillators}
+
+Equilibrium Position from $\L$:
+
+\tab $\pd{U}{q_i}=0$
+
+Quadratic Expansion:
+
+\tab $q_i\to(q_i)_{eq}+x_{qi}$
+
+Matrices:
+
+\tab $\L=\frac 12\dot x\tp M\dot x-\frac 12x\tp Kx$
+
+\tab $\phantom{\L}=\frac 12\sum_{ij}M_{ij}\dot x_i\dot x_j-\frac 12\sum_{ij}K_{ij}x_ix_j$
+
+\tab $K_{ij}=\frac{\p U(q_0)}{\p q_i\p q_j}$
+
+Normal Modes $A_\pm=\agb{1,a_{\pm}}$
+
+\tab \twoEqn{\det(\lambda M-K)=0}{(\lambda M-K)A=0}{9.3em}{9em}
+
+\tab $\omega_I=\sqrt{\lambda_I}$
+
+General Solution to $M\ddot x=-Kx$:
+
+\tab $x(t)=\sum_{I=1}^{n-m}(c_i^+e^{i\omega_I t}+c_i^-e^{-i\omega_I t})A_I+\sum_{\alpha=1}^m(v_0^\alpha t+x_0^\alpha)A_{0,\alpha}$
+
+\section{Miscellaneous}
+
+Spherical Coordinates:
+
+\tab $x=r\sin\theta\cos\phi$
+
+\tab \twoEqn{y=r\sin\theta\sin\phi}{v^2=\dot r^2+r^2\dot\theta^2+r^2\sin^2\theta\dot\phi^2}{9em}{12em}
+
+\tab $z=r\cos\theta$
+
+% Angular Momentum:
+
+% \tab $L_z=xp_y-yp_x$
+
+\section{Expansions and Identities}
+
+% \tab \twoEqn{f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n}{e^x=\sum_{n=0}^\infty\frac{x^n}{n!}}{15.2em}{7em}
+
+\tab $\sin(x)=x-\frac{x^3}{6}+\frac{x^5}{120}-\cdots$
+
+\tab $\cos(x)=1-\frac{x^2}{2}+\frac{x^4}{24}-\cdots$
+
+\tab \twoEqn{\frac{1}{1-x}=1+x+x^2+\cdots}{\sqrt{1+x}\approx 1+\frac x2-\frac{x^2}{8}+\cdots}{12em}{10em}
+
+% Double Angle:
+
+% \tab $\sin 2x=2\sin x\cos x$
+
+% \tab $\cos 2x=\cos^2 x-\sin^2 x$
+
+% Squared Angle:
+
+% \tab $\sin^2 x=\tfrac{1}{2}(1-\cos 2x)$
+
+% \tab $\cos^2 x=\tfrac{1}{2}(1+\cos 2x)$
+
+Sum and Difference:
+
+\tab $\sin(x\pm y)=\sin x\cos y\pm\cos x\sin y$
+
+\tab $\cos(x\pm y)=\cos x\cos y\mp\sin x\sin y$
+
+% Product to Sum:
+
+% \tab $\cos x\cos y=\tfrac{1}{2}\lrb{\cos(x+y)+\cos(x-y)}$
+
+% \tab $\sin x\sin y=\tfrac{1}{2}\lrb{\cos(x-y)-\cos(x+y)}$
+
+% \tab $\sin x\cos y=\tfrac{1}{2}\lrb{\sin(x+y)+\sin(x-y)}$
+
+% \tab $\cos x\sin y=\tfrac{1}{2}\lrb{\sin(x+y)-\sin(x-y)}$ 
+
+\rule{\linewidth}{0.1pt}
+
+\scriptsize 
+Updated \today
+
+\end{multicols*}
+
+
+
+\end{document}
