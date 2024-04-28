@@ -1,0 +1,429 @@
+\documentclass[10pt]{article}
+%----------Packages----------
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage[landscape, total={10.8in,8in}]{geometry}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{enumitem}
+\usepackage{array}
+%----------Page formatting----------
+\pagenumbering{gobble}
+\parindent=0pt
+%----------Symbols----------
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\lap}[1]{\mathcal{L}\left\{#1\right\}}
+\newcommand{\lapinv}[1]{\mathcal{L}^{-1}\left\{#1\right\}}
+\newcommand{\ihat}{\hat{i}}
+\newcommand{\jhat}{\hat{j}}
+\newcommand{\khat}{\hat{k}}
+%----------Vectors----------
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand\norm[1]{\lVert#1\rVert}
+\newcommand\vect[1]{\overrightarrow{#1}}
+%----------Matrices----------
+\newenvironment{amatrix}[1]{\left[\begin{array}{@{}*{#1}{c}|c@{}}}{\end{array}\right]}
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\tran}{^{\mkern-1.5mu\mathsf{T}}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\vvec}[2]{\begin{bmatrix}#1 \\ #2 \end{bmatrix}}
+\newcommand{\vvvec}[3]{\begin{bmatrix}#1 \\ #2 \\ #3 \end{bmatrix}}
+%----------Complex Numbers----------
+\newcommand{\cis}{\mathrm{cis }}
+
+%----------Headings----------
+\newcommand\sectionheading[1]{\begin{center}\large{\textbf{#1}}\end{center}\normalsize}
+\newcommand\heading[1]{\smallskip\textbf{#1}\smallskip}
+% \newcommand\heading[1]{\textbf{#1}}
+% Section Box, taken from https://www.overleaf.com/articles/130-cheat-sheet/ntwtkmpxmgrp
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+\newenvironment{sectionbox}[2]{
+    \begin{tikzpicture}
+    % Content
+    \node [mybox] (box){\begin{minipage}{0.294\textwidth}{#2}\end{minipage}};
+    % Title
+    \node[fancytitle, right=10pt] at (box.north west) {#1};
+    \end{tikzpicture}
+}
+
+%----------Phase Diagrams----------
+\newcommand*{\TickSize}{4pt}
+\newcommand*{\DrawVerticalPhaseLine}[7][]{
+\begin{center}
+\begin{tikzpicture}[thick]
+    % #1 = axis label
+    % #2 = axis tick positions
+    % #3 = axis tick labels
+    % #4 = up arrows positions as CSV
+    % #5 = down arrow positions as CSV
+    % #6 = lower bound
+    % #7 = upper bound
+    \def\ArrowSpace{0.15}
+    \foreach \X [count=\Xi] in {#2} {
+    \foreach \Y [count=\Yi] in {#3} {
+        \ifnum\Xi=\Yi 
+            \draw (-\TickSize,\X) -- (\TickSize,\X) node [right] {\Y};
+        \fi
+    }}
+    \foreach \X in {#4} { % Up arrows
+        \draw [-Triangle] (0,\X-\ArrowSpace) -- (0,\X+\ArrowSpace);
+    }
+    \foreach \X in {#5} { % Down arrows
+        \draw [-Triangle] (0,\X+\ArrowSpace) -- (0,\X-\ArrowSpace);
+    }
+    \draw (0,#6) -- (0,#7) node [above] {#1};
+\end{tikzpicture}
+\end{center}}
+
+%----------Info----------
+\newcommand*{\course}{MATH 255} 
+
+%----------Document Begins Here----------
+\begin{document}
+
+\begin{center}
+    \huge{\textbf{\course \ Formula Sheet}}
+\end{center}
+
+\begin{multicols*}{3}
+
+\sectionheading{Definitions}
+
+\heading{Differential Equation}
+
+\[y^{(n)}=F(t,y,y',\ldots,y^{(n-1)})\]
+
+\heading{Ordinary Differential Equation}
+
+Derivatives are taken w.r.t. the same independent variable. 
+
+\heading{Order}
+
+The order of the highest derivative that appears.
+
+\heading{Linear Differential Equation}
+
+\[y^{(n)}+a_{n-1}y^{(n-1)}+\cdots+a_1y'+a_0 y=f(t)\]
+
+Only linear combination of unknown and its derivatives.
+
+\sectionheading{First Order ODEs}
+\[y'(t)=f(t,y(t))\]
+
+\heading{Integration: $y'(t)=f(t)$}
+\[y(t)=\int f(t)\,dt\]
+
+\heading{Separable Equations: $y'(t)=g(t)h(y)$}
+\[\int\frac{dy}{h(t)}=\int g(t)\,dt\]
+
+\heading{Integrating Factor: $y'+p(t)y=q(t)$ (linear)}
+\[r(t)=e^{\int p(t)\,dt}\]
+\[\bigl[r(t)y\bigr]'=r(t)q(t)\]
+\[y=\frac{1}{r(t)}\Bigl(\int r(t)q(t)\,dt\Bigr)\]
+
+\heading{Picard's Theorem: $y'=f(t,y)$.}
+
+If $f(t,y)$ is continuous near $(t_0,y_0)$ and $\frac{\partial f}{\partial y}$ exists and is continuous near $(t_0,y_0)$, then a solution exists locally and is unique.
+
+\heading{Autonomous Equation: $y'=f(y)$}
+
+Critical points at $y'=f(y)=0$.
+
+\begin{multicols*}{3}
+    \DrawVerticalPhaseLine[$y$]{0}{Stable}{-0.3}{0.3}{-0.5}{0.5}
+    \DrawVerticalPhaseLine[$y$]{0}{Unstable}{0.3}{-0.3}{-0.5}{0.5}
+    \DrawVerticalPhaseLine[$y$]{0}{Semistable}{-0.3,0.3}{}{-0.5}{0.5}
+\end{multicols*}
+
+\heading{Application: Mixing}
+
+$Q$: amount of salt
+
+$s$: inflow concentration 
+
+$r$: flow rate
+
+$V$: volume
+
+\[Q'=rs-\frac{r}{V}Q\]
+\[Q(t)=sV+(Q_0-sV)e^{-\frac rVt}\]
+
+\heading{Euler's Method: $y'=f(t,y)$}
+\[y(t+h)\approx y(t)+hf(t,y)\]
+
+\sectionheading{Second Order Linear ODEs}
+\[y''+p(t)y'+q(t)y=g(t)\]
+\[L[y]=g(t)\]
+
+\heading{Homogeneous: $L[y]=0$}
+
+If $y_1$ and $y_2$ are solutions, then $y=C_1y_1+C_2y_2$ is also a solution.
+
+\heading{Reduction of Order: $y_1$ solves $y''+p(t)y'+q(t)y=0$}
+
+Try $y_2(t)=v(t)y_1(t)$.
+\[y_2(t)=y_1(t)\int\frac{e^{-\int p(t)\,dt}}{\bigl(y_1(t)\bigr)^2}\,dt\]
+
+\heading{Constant Coefficient 2LODE: $ay''+by'+cy=0$}
+
+Try $y=e^{rt}$:
+\[ar^2+br+c=0\]
+\begin{align*}
+    y&=C_1e^{r_1x}+C_2e^{r_2x} &r_1\neq r_2 \\
+    y&=(C_1+C_2x)e^{r_x} &r_1=r_2\\
+    y&=C_1e^{\alpha x}\cos(\beta x)+C_2e^{\alpha x}\sin(\beta x) &r_1,r_2=\alpha\pm i\beta
+\end{align*}
+
+\heading{Nonhogeneous: $L[y]=g(t)\ne 0$}
+
+\[y=y_c+y_p\]
+where $y_c$ solves the homogeneous equation and $y_p$ is a particular solution.
+
+\heading{Undetermined Coefficients: $L[y]=g(t)$}
+
+$s=0,1,$ or $2$ so $y_c$ and $y_p$ are linearly independent.
+
+\begin{tabular}{|c|c|}
+    \hline
+    $g(t)$ & $y_p$ \\
+    \hline
+    $P_n(t)=a_0t^n+\cdots+a_n$ & $t^s(A_0 t^n+\cdots+A_n)$ \\
+    $e^{\alpha t}$ & $t^s Ae^{\alpha t}$ \\
+    $\sin(\beta t)$ or $\cos(\beta t)$ & $A\cos(\beta t)+B\sin(\beta t)$ \\
+    \hline 
+\end{tabular}
+
+\heading{Variation of Parameters: $L[y]=g(t)$}
+
+Try $y_p=u_1 y_1 + u_2 y_2$.
+
+\[\begin{cases}
+    u_1' y_1 + u_2' y_2 = 0 \\
+    u_1' y_1' + u_2' y_2' = g(t)
+\end{cases}\]
+
+\sectionheading{Applications of 2LODE}
+
+\heading{Mechanical Oscillations}
+
+\[mx''+cx'+kx=F(t), \quad\omega_0=\sqrt{\frac km}\]
+
+% LHS: treat as constant coefficient 2LODE.
+Undamped forced: $mx''+kx=F_0\cos(\omega t)$:
+\[x_c=C_1\cos(\omega t)+C_2\sin(\omega t)\]
+\[x_p=\frac{F_0}{m(\omega_0^2-\omega^2)}\cos(\omega t) \quad (\omega\ne\omega_0)\]
+\[x_p=\frac{F_0}{2m\omega}t\sin(\omega t) \quad (\omega=\omega_0)\]
+
+Damped forced: $mx''+cx'+kx=F_0\cos(\omega t)$:
+
+Let $\rho=\frac{c}{2m}$. Call $x_p=x_{sp}$ (steady periodic).
+
+Practical resonance: maximum amplitude of $x_{sp}$. 
+ 
+\[\omega=\sqrt{\omega^2-2\rho^2} \text{ or } \omega=0\]
+
+\sectionheading{Laplace Transform}
+
+\heading{Definition}
+
+\[\lap{f(t)}=F(s):=\int_0^\infty e^{-st}f(t)\,dt\]
+
+$\lap{f+g}=\lap{f}+\lap{g} \text{ and }\lap{cf}=c\lap{f}$
+
+$\lap{fg}\ne\lap{f}\lap{g}$
+
+\newpage
+
+\heading{Common Laplace Transforms}
+
+\begin{tabular}{|c|c|}
+    \hline
+    $f(t)$ & $\lap{f(t)}=F(s)$ \\
+    \hline 
+    $c$ & $\frac cs, \quad s>0$ \\[5pt]
+    $t^n$ & $\frac{n!}{s^{n+1}}, \quad s>0$ \\[5pt]
+    $e^{-at}$ & $\frac{1}{s+a}, \quad s>-a$ \\[5pt]
+    $\sin(at)$ & $\frac{a}{s^2+a^2}, \quad s>0$ \\[5pt]
+    $\cos(at)$ & $\frac{s}{s^2+a^2}, \quad s>0$ \\[5pt]
+    $\sinh(at)$ & $\frac{a}{s^2-a^2}, \quad s>|a|$ \\[5pt]
+    $\cosh(at)$ & $\frac{s}{s^2-a^2}, \quad s>|a|$ \\[5pt]
+    $e^{-at}f(t)$ & $F(s+a)$ \\[5pt]
+    \hline
+\end{tabular}
+
+\heading{Laplace Transform of Derivatives}
+
+\begin{tabular}{|c|l|}
+    \hline 
+    $f(t)$ & $\lap{f(t)}=F(s)$ \\
+    \hline 
+    $g'(t)$ & $s\lap{g(t)}-g(0)$ \\
+    $g''(t)$ & $s^2\lap{g(t)}-sg(0)-g'(0)$ \\
+    $g'''(t)$ & $s^3\lap{g(t)}-s^2g(0)-sg'(0)-g''(0)$ \\
+    $g^{(n)}(t)$ & \footnotesize{$s^n\lap{g(t)}-s^{n-1}g(0)-s^{n-2}g'(0)-\cdots-g^{(n-1)}(0)$} \\
+    \hline
+\end{tabular}
+
+\heading{Solving ODEs}
+
+\begin{enumerate}[noitemsep,topsep=0pt]
+    \item Laplace transform both sides 
+    \item Plug in initial condition 
+    \item Solve for $X(s)=\lap{x(t)}$
+    \item $\lap{x(t)}=\lapinv{X(s)}$
+\end{enumerate}
+
+\heading{Convolution}
+\[\lapinv{F(s) G(s)}=f*g=\int_0^t f(\tau)g(t-\tau)d\,\tau \quad (t\ge 0)\]
+
+\sectionheading{Linear System of ODEs}
+\[\vec{x}\,'=A(t)\vec x(t)+\vec f(t) \quad\Leftrightarrow\quad \vec x\,'=P\vec x+\vec f\]
+
+\heading{Homogeneous}
+
+\[\vec x=c_1\vec x_1+c_2\vec x_2+\cdots+c_n\vec x_n\]
+\[X(t)=\begin{bmatrix}
+    | & | & & | \\
+    \vec x_1 & \vec x_2 & \cdots & \vec x_n \\
+    | & | & & | 
+\end{bmatrix} \text{ (fundamental matrix)}\]
+\[\vec x=X\vec c\]
+
+\heading{Nonhomogeneous}
+
+\[\vec x=\vec x_c+\vec x_p=X\vec c+\vec x_p\]
+
+\heading{Eigenvalue Method}
+
+Eigenvalue: $\det(A-\lambda I)=0$
+
+Eigenvector: $(A-\lambda I)\vec v=0$
+
+Solution to $\vec x\,'=P\vec x$:
+\[\vec x=c_1\vec v_1e^{\lambda_1 t}+c_2\vec v_2e^{\lambda_2 t}+\cdots+c_n\vec v_ne^{\lambda_n t}\]
+
+If complex eigenpair $\vec x_1=\vec v_1e^{\lambda_1 t}$, $\vec x_2=\conj{\vec v_1}$: 
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item Use $c_1 \Re(\vec x_1)+c_2 \Im(\vec x_1)$ 
+\end{itemize}
+
+\heading{Vector Field Behaviour}
+
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    $\lambda_1$ & $\lambda_2$ & behaviour & stability \\
+    \hline
+    $+$ & $+$ & source & unstable \\
+    $-$ & $-$ & sink & stable \\
+    $+$ & $-$ & saddle & unstable\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|}
+    \hline
+    $\lambda$ & behaviour & stability \\
+    \hline
+    $\pm bi$ & center & ellipses \\
+    $a\pm bi, a>0$ & spiral source & unstable \\
+    $a\pm bi, a<0$ & spiral sink & stable \\
+    \hline
+\end{tabular}
+
+\heading{Multiple Eigenvalues}
+
+Generalized eigenvectors:
+\begin{align*}
+    (A-\lambda I)\vec v_1&=\vec v_0 \implies \vec x_1 = \vec v_1e^{\lambda t} \\
+    (A-\lambda I)\vec v_2&=\vec v_1 \implies \vec x_2 = (\vec v_2+\vec v_1 t)e^{\lambda t} \\
+    (A-\lambda I)\vec v_k&=\vec v_{k-1} \implies \vec x_k=\left(\sum_{i=0}^{k-1}\vec v_{k-i}\frac{t^i}{i!}\right)e^{\lambda t}
+\end{align*}
+
+\sectionheading{Nonlinear System of ODEs}
+
+\heading{Autonomous systems}
+
+\[\frac{d}{dt}\underbrace{\vvec{x(t)}{y(t)}}_{\vec x}=\underbrace{\vvec{f(x,y)}{g(x,y)}}_{F(\vec x)}\]
+
+Critical points: $F(\vec x_0)=0$.
+
+\heading{Linearization}
+
+Suppose $\vec p=(x_0,y_0)$ is a critical point. 
+
+Let $u=x-x_0$ and $v=y-y_0$. 
+
+Linearized system:
+\[\vvec{u}{v}'=\matr{J}_{\vec{p}}\vvec{u}{v}=\begin{bmatrix}
+    f_x & f_y \\
+    g_x & g_y
+\end{bmatrix}_{\vec p}\vvec{u}{v}\]
+
+"Almost linear" - good approximation when:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $(x_0,y_0)$ is isolated
+    \item Jacobian is invertible $\Leftrightarrow$ $0$ is not an eigenvalue
+\end{itemize}
+
+\heading{Classification}
+
+Refer to Vector Field Behaviour. Center behaviour is unclear because Jacobian of nonlinear system will vary.
+
+\heading{Conservative Equation}
+
+\[x''+f(x)=0\]
+
+Associated conservative system:
+\[\vvec{x}{y}'=\vvec{y}{-f(x)}\]
+
+Energy function $E(x,y)$:
+\[E(x,y)=\frac 12y^2+\int_0^x f(u)\,du\]
+
+For any solution, $E(x,y)$ is constant.
+
+\sectionheading{Miscellaneous Formulas}
+
+\heading{Partial Fractions}
+
+{\footnotesize
+\[\frac{P(x)}{(x-r_1)(x-r_2)\cdots(x-r_n)}=\frac{A_1}{x-r_1}+\frac{A_2}{x-r_2}+\cdots+\frac{A_n}{x-r_n}\]}
+
+$(x-r)^m$ corresponds to $\displaystyle\frac{A_1}{x-r}+\frac{A_2}{(x-r)^2}+\cdots+\frac{A_m}{(x-r)^m}$
+
+$ax^2+bx+c$ corresponds to $\frac{Ax+B}{ax^2+bx+c}$
+
+\sectionheading{Identities and Derivatives}
+\heading{Trig}
+\[\cos(2x)=\cos^2 x-\sin^2 x \quad \sin(2x)=2\sin x\cos x\]
+\[\sin(x\pm y)=\sin x \cos y \pm \cos x \sin y\]
+\[\cos(x\pm y)=\cos x \cos y \mp \sin x \sin y\]
+\[\tan(x\pm y)=\frac{\tan x \pm \tan y}{1 \mp \tan x \tan y}\]
+\heading{Derivatives} 
+\begin{multicols*}{2}
+\[\frac{d}{dx} (\tan x)=\sec^2 x\]
+\[\frac{d}{dx} (\csc x)=-\csc x \cot x\]
+\[\frac{d}{dx} (\sec x)=\sec x \tan x\]
+\[\frac{d}{dx} (\cot x)=-\csc^2 x\]
+\[\frac{d}{dx} (\arcsin x)=\frac{1}{\sqrt{1-x^2}}\]
+\[\frac{d}{dx} (\arccos x)=-\frac{1}{\sqrt{1-x^2}}\]
+\[\frac{d}{dx} (\arctan x)=\frac{1}{1+x^2}\]
+\[\frac{d}{dx} \log |x| = \frac{1}{x}\]
+\[\frac{d}{dx} b^x = b^x \log b\]
+\[\frac{d}{dx} \log_b x=\frac{1}{x\log b}\]
+\end{multicols*}
+
+\end{multicols*}
+
+\end{document}
