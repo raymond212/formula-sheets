@@ -4,6 +4,9 @@
 
 | Course | Name | Notes/Formula Sheet |
 | ------ | ---- | ------------------- |
+| APSC 100 | Introduction to Engineering I | [Notes](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/APSC%20100%20-%20Introduction%20to%20Engineering%20I/apsc_100_notes.pdf) |
+| APSC 101 | Introduction to Engineering II | [Notes](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/APSC%20101%20-%20Introduction%20to%20Engineering%20II/apsc_101_notes.pdf) |
+| APSC 160 | Introduction to Computation in Engineering Design | [Notes](https://github.com/raymond212/formula-sheets/blob/main/APSC%20160%20-%20Introduction%20to%20Computation%20in%20Engineering%20Design/apsc_160_notes.md) |
 | CHEM 154 | Chemistry for Engineering | [Notes](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/CHEM%20154%20-%20Chemistry%20for%20Engineering/chem_154_notes.pdf) |
 | MATH 120 | Honours Differential Calculus | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20120%20-%20Honours%20Differential%20Calculus/math_120_formula_sheet.pdf) |
 | MATH 121 | Honours Integral Calculus | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20121%20-%20Honours%20Integral%20Calculus/math_121_formula_sheet.pdf) |
@@ -16,6 +19,7 @@
 
 | Course | Name | Notes/Formula Sheet |
 | ------ | ---- | ------------------- |
+| APSC 278 | Engineering Materials | [Notes](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/APSC%20278%20-%20Engineering%20Materials/apsc_278_notes.pdf) |
 | ELEC 204 | Linear Circuits | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/ELEC%20204%20-%20Linear%20Circuits/elec_204_formula_sheet.pdf) |
 | MATH 220 | Mathematical Proof | [Video Notes](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20220%20-%20Mathematical%20Proof/math_220_video_notes.pdf), [Class Notes](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20220%20-%20Mathematical%20Proof/math_220_class_notes.pdf) |
 | MATH 253 | Multivariable Calculus | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20253%20-%20Multivariable%20Calculus/math_253_formula_sheet.pdf) (WIP) |
