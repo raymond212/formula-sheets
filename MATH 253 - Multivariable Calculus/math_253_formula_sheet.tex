@@ -1,0 +1,146 @@
+\documentclass[10pt]{article}
+%----------Packages----------
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage[landscape, total={10.8in,8in}]{geometry}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{bm}
+%----------Page formatting----------
+\pagenumbering{gobble}
+\parindent=0pt
+%----------Symbols----------
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\lap}[1]{\mathcal{L}\left\{#1\right\}}
+\newcommand{\lapinv}[1]{\mathcal{L}^{-1}\left\{#1\right\}}
+\newcommand{\ihat}{\hat{i}}
+\newcommand{\jhat}{\hat{j}}
+\newcommand{\khat}{\hat{k}}
+%----------Vectors----------
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+\newcommand{\bvec}[1]{\bm{\textnormal{\bfseries #1}}}
+%----------Matrices----------
+\newenvironment{amatrix}[1]{\left[\begin{array}{@{}*{#1}{c}|c@{}}}{\end{array}\right]}
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\tran}{^{\mkern-1.5mu\mathsf{T}}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\inv}{^{-1}}
+
+\newcommand{\vvec}[2]{\begin{bmatrix}#1 \\ #2 \end{bmatrix}}
+\newcommand{\vvvec}[3]{\begin{bmatrix}#1 \\ #2 \\ #3 \end{bmatrix}}
+%----------Complex Numbers----------
+\newcommand{\cis}{\mathrm{cis }}
+%----------Derivative----------
+\newcommand{\dv}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\ddv}[2]{\frac{\mathrm{d}^2 #1}{\mathrm{d} #2^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+%----------Headings----------
+\newcommand\sectionheading[1]{\begin{center}\large{\textbf{#1}}\end{center}\normalsize}
+\newcommand\heading[1]{\smallskip\textbf{#1}\smallskip}
+% \newcommand\heading[1]{\textbf{#1}}
+
+%----------Info----------
+\newcommand*{\course}{MATH 253} 
+
+%----------Document Begins Here----------
+\begin{document}
+
+\begin{center}
+    \huge{\textbf{\course \ Formula Sheet}}
+\end{center}
+
+\begin{multicols*}{3}
+
+\sectionheading{Vectors}
+
+\sectionheading{Lines and Planes}
+
+\sectionheading{Limits}
+\begin{tabular}{@{}ll}
+    Limit & $\displaystyle\lim_{\bvec x\to\bvec a}f(\bvec x)=L$ \\
+    Continuity & $\displaystyle\lim_{\bvec x\to\bvec a}f(\bvec x)=f(\bvec a)$
+\end{tabular}
+where $\bvec x\to\bvec a$ in any way.
+
+\heading{Showing limit DNE}
+
+\begin{itemize}[itemsep=0pt,topsep=0pt]
+    \item Find one way to approach $\bvec a$ such that the limit DNE.
+    \item If $\bvec a=(0,0)$, we could test $\displaystyle\lim_{t\to 0}f(t,0)$, $\displaystyle\lim_{t\to 0}f(0,t)$, $\displaystyle\lim_{t\to 0}f(t,t)$, etc.
+\end{itemize}
+
+\heading{Showing limit exists}
+
+\begin{itemize}[itemsep=0pt,topsep=0pt]
+    \item Use polar coordinates, then take $r\to 0$. $\theta$ does not matter.
+    \item i.e. Set $x=r\cos\theta,y=r\sin\theta$, then $x^2+y^2=r^2$.
+\end{itemize}
+
+\sectionheading{Partial Derivatives}
+
+\heading{First order}
+\[f_x=f_1=\pd fx=\partial_x f=\lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}{h}\]
+\[f_y=f_2=\pd fy=\partial_y f=\lim_{h\to 0}\frac{f(x,y+h)-f(x,y)}{h}\]
+
+\heading{Higher order}
+\begin{align*}
+    f_{xx}&=f_{11}=\pdd fx \\
+    f_{yy}&=f_{22}=\pdd fy \\
+    f_{xy}&=f_{12}=\pd fy\left(\pd fx\right) \\
+    f_{yx}&=f_{21}=\pd fx\left(\pd fy\right)
+\end{align*}
+{\small If $f_{xy}$ and $f_{yx}$ both exist and are continuous, then $f_{xy}=f_{yx}$.}
+
+\heading{Chain Rule}
+
+Consider $f(x,y)$ with $x(t)$ and $y(t)$.
+\[\dv ft=\pd fx\dv xy+\pd fy\dv yt\]
+
+Consider $f(x,y)$ with $x(s,t)$ and $y(s,t)$.
+\[\pd ft=\pd fx\pd xt+\pd fy\pd yt\]
+
+Consider $f(x_1,x_2,\ldots,x_n)$ with $x_i(t_1,t_2,\ldots,t_k)$.
+\[\pd f{t_i}=\pd{f}{x_1}\pd{x_1}{t_i}+\pd{f}{x_2}\pd{x_2}{t_i}+\cdots+\pd{f}{x_n}\pd{x_n}{t_i}\]
+
+\sectionheading{Tangent Planes}
+
+Tangent plane at $f(a,b)$:
+\[-f_x(a,b)(x-a)-f_y(a,b)(y-b)+(z-f(a,b))=0\]
+
+\sectionheading{Gradient}
+
+Consider $f(x,y,z)$. 
+\[\nabla f=\bigg\langle \pd fx,\pd fy,\pd fz\bigg\rangle\]
+
+\begin{itemize}[noitemsep,topsep=0pt]
+    \item $\nabla f(a,b,c)$ is the direction of normal vector at $(a,b,c)$ 
+    \item Point-normal tangent plane:
+    \[\nabla f(a,b,c)\cdot\langle x-a,y-b,z-c\rangle=0\]
+    \item Normal line:
+    \[\langle x,y,z\rangle=\langle a,b,c\rangle+t\cdot\nabla f(a,b,c)\]
+\end{itemize}
+
+\sectionheading{Linear Approximation}
+\[f(x,y)\approx f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)\]
+\[f(x+\Delta x,y+\Delta y)\approx f(a,b)+f_x(a,b)\Delta x+f_y(a,b)\Delta y\]
+\[\Delta f\approx f_x(a,b)\Delta x+f_y(a,b)\Delta y\]
+\[\mathrm{d}f=f_x(a,b)\mathrm{d}x+f_y(a,b)\mathrm{d}y\]
+
+\end{multicols*}
+
+\end{document}
