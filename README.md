@@ -26,6 +26,7 @@
 | MATH 255 | Ordinary Differential Equations | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20255%20-%20Ordinary%20Differential%20Equations/math_255_formula_sheet.pdf) |
 | MATH 257 | Partial Differential Equations | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20257%20-%20Partial%20Differential%20Equations/math_257_formula_sheet.pdf) |
 | MECH 260 | Mechanics of Materials | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MECH%20260%20-%20Mechanics%20of%20Materials/mech_260_formula_sheet.pdf) |
+| PHYS 250 | Introduction to Modern Physics | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/PHYS%20250%20-%20Introduction%20to%20Modern%20Physics/phys_250_formula_sheet.pdf) |
 
 ## 300-Level
 
