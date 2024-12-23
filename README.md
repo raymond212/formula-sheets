@@ -40,6 +40,7 @@
 | MATH 317 | Vector Calculus | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20317%20-%20Vector%20Calculus/math_317_formula_sheet.pdf) |
 | MATH 318 | Probability with Physical Applications| [Formula Sheet<sup>1</sup>](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20318%20-%20Probability%20with%20Physical%20Applications/math_318_formula_sheet.pdf) |
 | PHYS 301 | Electricity and Magnetism | [Formula Sheet<sup>1</sup>](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/PHYS%20301%20-%20Electricity%20and%20Magnetism/phys_301_formula_sheet.pdf) |
+| PHYS 304 | Quantum Mechanics | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/PHYS%20304%20-%20Quantum%20Mechanics/phys_304_formula_sheet.pdf) |
 | PHYS 350 | Classical Mechanics | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/PHYS%20350%20-%20Classical%20Mechanics/phys_350_formula_sheet.pdf) |
 
 <sup>1</sup> Adapted from the corresponding formula sheet in Donney Fan's [repository](https://github.com/DonneyF/formula-sheets/tree/master).

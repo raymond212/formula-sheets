@@ -1,0 +1,277 @@
+\documentclass[10pt]{article}
+%----------Packages----------
+\usepackage[utf8]{inputenc}
+\usepackage[landscape,left=5mm,right=5mm,top=5mm,bottom=5mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage{graphicx}
+
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate]{topsep=0pt,noitemsep}
+
+%----------Page formatting----------
+\pagenumbering{gobble}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.4}
+
+%----------General----------
+\newcommand{\ds}{\displaystyle}
+\newcommand{\tab}{\hspace{.02\textwidth}}
+\newcommand{\twoEqn}[4]{$\makebox[#3][l]{$#1$} \makebox[#4][l]{$#2$}$}
+\newcommand{\threeEqn}[6]{$\makebox[#4][l]{$#1$} \makebox[#5][l]{$#2$} \makebox[#6][l]{$#3$}$}
+\newcommand{\fourEqn}[8]{$\makebox[#5][l]{$#1$} \makebox[#6][l]{$#2$} \makebox[#7][l]{$#3$} \makebox[#8][l]{$#4$}$}
+\newcommand{\splittab}{\hspace{2.58ex}}
+
+%----------Brackets----------
+\newcommand{\lrb}[1]{\left(#1\right)}
+\newcommand{\agb}[1]{\left\langle#1\right\rangle}
+\newcommand{\sqb}[1]{\left[#1\right]}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\clb}[1]{\set{#1}}
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+%----------Differentiation----------
+\renewcommand{\d}{\,d}
+\newcommand{\p}{\partial}
+\newcommand{\dv}[2]{\frac{d #1}{d #2}}
+\newcommand{\ddv}[2]{\frac{d^2 #1}{d #2^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ppd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+%----------Integration----------
+\newcommand{\infint}{\int_{-\infty}^{\infty}}
+
+%----------Sections----------
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0ex}{-1ex}{0.7ex}
+                        {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0ex}{-0.4ex}{0.4ex}
+                        {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+
+%----------PHYS 304----------
+\newcommand{\h}{\hbar}
+\newcommand{\vphi}{\varphi}
+\newcommand{\om}{\omega}
+\newcommand{\ka}{\kappa}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\I}{\mathcal I}
+
+\newcommand{\bra}[1]{\langle#1\rvert}
+\newcommand{\ket}[1]{\lvert#1\rangle}
+\newcommand{\inner}[2]{\langle#1\lvert#2\rangle}
+\renewcommand{\outer}[2]{\lvert#1\rangle\langle#2\rvert}
+
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+\newcommand{\grad}{\nabla}
+
+\newcommand{\Tr}{\text{Tr}}
+\newcommand{\blrb}[1]{\bigl(#1\bigr)}
+\newcommand{\tp}{\otimes}
+
+\newcommand{\CNOT}{\text{CNOT}}
+\renewcommand{\S}{\vec S}
+
+%----------Document Begins Here----------
+\begin{document}
+
+\begin{multicols*}{3}
+\raggedcolumns
+
+{\LARGE{\underline{PHYS 304 Formula Sheet}}}
+
+\section{Introduction}
+
+\begin{tabular}{@{}ll}
+    Schr\"odinger & $i\h\pd\Psi t=-\frac{\h^2}{2m}\ppd\Psi x+V\Psi$ \\
+    Probability & $P(a\le x\le b)=\int_a^b\abs{\Psi(x,t)}^2\,dx$ \\
+    Expectation & $\agb{x}=\infint x\abs{\Psi(x,t)}^2\,dx$ \\
+    Momentum & $\vec p=-i\h\pd{}{x}$ \\
+    & $\agb{p}=\infint\Psi^*\lrb{-i\h\pd{}{x}}\Psi\,dx$ \\
+    Observable & $\agb{Q(x,p)}=\infint\Psi^*\lrb{Q(x,p)}\Psi\,dx$
+\end{tabular}
+
+\section{1-D Schr\"odinger Equation}
+
+\begin{tabular}{@{}ll}
+    SOV & $\Psi(x,t)=\psi(x)\vphi(t)$ \\
+    & $\vphi(t)=e^{-iEt/\h}$ \\
+    TISE & $-\frac{\h^2}{2m}\ddv\psi x+V\psi=E\psi$ \\
+    Hamiltonian & $H(x,p)=\frac{p^2}{2m}+V(x)$ \\
+    & \twoEqn{H\psi=E\psi}{\agb{H}=E}{7em}{7em} \\
+    Wavefunction & $\Psi(x,t)=\sum_n c_n\psi_n(x)e^{-iE_nt/\h}$ \\
+    Probability & $P(E_n)=\abs{c_n}^2$
+\end{tabular}
+
+\subsection{Infinite Square Well $(V=\infty\text{ \normalfont{for} }x<0,x>a)$}
+
+\begin{tabular}{@{}ll}
+    Wavefunction & $\psi_n(x)=\sqrt{\frac{2}{a}}\sin\lrb{\frac{n\pi}{a}x}$ \\
+    Energy & $E_n=\frac{n^2\pi^2\h^2}{2ma^2}$
+\end{tabular}
+
+\subsection{Harmonic Oscillator $(V=\frac 12kx^2)$}
+
+\begin{tabular}{@{}ll}
+    Ladder & $\hat a_\pm=\frac{1}{\sqrt{2\h m\om}}(\mp ip+m\om x)$ \\
+    Wavefunction & $\psi_0(x)=\lrb{\frac{m\om}{\pi\h}}^{1/4}e^{-\frac{m\om}{2\h}x^2}$  \\
+    & $\psi_n(x)=\frac{1}{\sqrt{n!}}(\hat a_+)^n\psi_0(x)$ \\
+    Energy & $E_n=\lrb{n+\frac 12}\h\om$ 
+\end{tabular}
+
+\subsection{Step Potential $(V=V_0\text{ \normalfont{for} }x>0)$}
+
+\begin{tabular}{@{}ll}
+    Wavefunction & $\psi(x)=\begin{cases}
+        e^{ikx}+Ae^{-ikx} & x<0 \\
+        Be^{ilx} & x>0
+    \end{cases}$ \\
+    Wavenumbers & \twoEqn{k=\frac{\sqrt{2mE}}{\h}}{l=\frac{\sqrt{2m(E-V_0)}}{\h}}{6em}{7em} \\
+    Energy & $E=\frac{\h^2k^2}{2m}$ \\
+    Coefficients & \twoEqn{A=\frac{k-l}{k+1}}{B=\frac{2k}{k+1}}{6em}{7em} \\
+    & \twoEqn{R=\frac{k-l}{k+1}}{T=B\sqrt{\frac lk}=\frac{2\sqrt{kl}}{k+l}}{6em}{7em} \\
+    & $\abs{R}^2+\abs{T}^2=1$
+\end{tabular}
+
+\subsection{Free Particle}
+
+\begin{tabular}{@{}ll}
+    Wavefunction & $\Psi(x,t)=\frac{1}{\sqrt{2\pi}}\infint\phi(k)e^{i\lrb{kx-\frac{\h k^2}{2m}t}}\,dk$ \\
+    & $\phi(k)=\frac{1}{\sqrt{2\pi}}\infint\Psi(x,0)e^{-ikx}\,dx$
+\end{tabular}
+
+\subsection{Finite Well $(V=-V_0\text{ \normalfont{for} }-a\le x\le a)$}
+
+\begin{tabular}{@{}ll}
+    Bound & $\psi(x)={\footnotesize\begin{cases}
+        Fe^{\ka x} & x<-a \\
+        C\sin(lx)+D\cos(lx) & -a\le x\le a \\
+        Fe^{-\ka x} & x>a
+    \end{cases}}$ \\
+    & \twoEqn{\ka=\frac{\sqrt{-2mE}}{\h}}{l=\frac{\sqrt{2m(V_0+E)}}{\h}}{7em}{7em} \\
+    & $E_n+V_0\approx\frac{n^2\pi^2\h^2}{2m(2a)^2}\quad (n=1,3,5,\ldots)$ \\
+    Scattering & $\psi(x)={\footnotesize\begin{cases}
+        Ae^{ikx}+Be^{-ikx} & x<-a \\
+        C\sin(lx)+D\cos(lx) & -a\le x\le a \\
+        Fe^{ikx} & x>a
+    \end{cases}}$ \\
+    & \twoEqn{k=\frac{\sqrt{2mE}}{\h}}{l=\frac{\sqrt{2m(V_0+E)}}{\h}}{7em}{7em} \\
+    & $B=i\frac{\sin(2la)}{2kl}(l^2-k^2)F$ \\
+    & $F=\frac{e^{-2ika}A}{\cos(2la)-i\frac{k^2+l^2}{2kl}\sin(2la)}\qquad T=\frac{\abs{F}^2}{\abs{A}^2}$ \\
+    & $T^{-1}=1+\frac{V_0^2}{4E(E+V_0)}\sin^2\lrb{\frac{2a}{\h}\sqrt{2m(E+V_0)}}$ \\
+    \rlap{Perfect transmission: $E_n+V_0=\frac{n^2\pi^2\h^2}{2m(2a)^2}$}
+\end{tabular}
+
+\section{Formalism}
+
+\begin{tabular}{@{}ll}
+    ket & \twoEqn{\ket{a}=[\vec a]}{\inner ab=a_1^*b_1+\cdots+a_n^*b_n}{6em}{8em} \\
+    & $\inner fg=\int_a^b f(x)^*g(x)\,dx\quad \inner fg=\inner gf^*$ \\
+    ONB & \twoEqn{\inner ij=\delta_{ij}}{c_n=\inner{f_n}{f}}{6em}{8em} \\
+    Hermitian & $\int_V \vphi_1^*(O^\dagger\vphi_2)\,dV=\int_V(O\vphi_1)^*\vphi_2\,dV$ \\
+    & \twoEqn{O^\dagger=O}{O_{ab}^\dagger=O_{ba}^*}{6em}{8em} \\
+    Uncertainty & $\sigma_A^2\sigma_B^2\ge\lrb{\frac{1}{2i}\agb{[\hat A,\hat B]}}^2$ \\
+    & $\sigma_x\sigma_p\ge\frac\h 2$ \\
+    Dirac & \twoEqn{\bra{f}=\int f^*[\ldots]\,dx}{\bra{b}=[b_1^*\ldots b_n^*]}{10em}{6em} \\
+    Hermitian & $M^\dagger=\sum_{ij}^d[M]_{ji}^*\outer ij$ \\
+    & $\bra uM^\dagger\ket v=(M\ket u)^\dagger\ket v$
+\end{tabular}
+
+\section{3-D Schr\"odinger Equation}
+
+\begin{tabular}{@{}ll}
+    Schr\"odinger & $i\h\pd\Psi t=-\frac{\h^2}{2m}\grad^2\Psi+V\Psi$ \\
+    TISE & $-\frac{\h^2}{2m}\grad^2\psi+V\psi=E\psi$ \\
+    Spherical & $\begin{aligned}
+        \grad^2 &= \textstyle\frac{1}{r^2}\pd{}{r}\lrb{r^2\pd{}{r}}+\frac{1}{r^2\sin\theta}\pd{}{\theta}\lrb{\sin\theta\pd{}{\theta}} \\
+        &\textstyle\splittab+\frac{1}{r^2\sin^2\theta}\ppd{}{\phi}
+    \end{aligned}$ \\
+    SOV & $\Psi(r,\theta,\phi)=R(r)Y(\theta,\phi)$ \\
+    Angular & {\small$\sin\theta\pd{}{\theta}\lrb{\sin\theta\pd{Y}{\theta}}+\ppd{Y}{\phi}=-l(l+1)\sin^2\theta Y$} \\
+    Radial & {\small$u=rR, -\frac{\h^2}{2m}\ddv ur+\sqb{V+\frac{\h^2}{2m}\frac{l(l+1)}{r^2}}u=Eu$}
+\end{tabular}
+
+\subsection{Spherical Well $(V=\infty\text{ \normalfont{for} }r>a)$}
+
+\begin{tabular}{@{}ll}
+    Bessel Solutions & $u(r)=Arj_l(kr)+Brn_l(kr)$ 
+\end{tabular}
+
+\subsection{Hydrogen $(V=-\frac{e^2}{4\pi\ep_0}\frac 1r)$}
+
+\begin{tabular}{@{}ll}
+    \rlap{$\psi_{nlm}=\sqrt{\lrb{\frac{2}{na}}^3\frac{(n-l-1)!}{2n(n+l)!}}e^{-r/na}\lrb{\frac{2r}{na}}^lL_{n-l+1}^{2l+1}\lrb{\frac{2r}{na}}Y_l^m(\theta,\phi)$} & \\
+    Radius & $a_0=\frac{4\pi\ep_0\h^2}{me^2}\approx\SI{52.9}{pm}$ \\
+    Energy & $E_n=\frac{E_1}{n^2}\qquad E_1=-\frac{m_e}{2\h^2}\lrb{\frac{e^2}{4\pi\ep_0}}^2=\SI{-13.6}{\eV}$ \\
+    Photon & $E_\gamma=E_i-E_f=-13.6\lrb{\frac{1}{n_i^2}-\frac{1}{n_f^2}}=h\nu$ \\
+    Rydberg & $\frac 1\lambda=R\lrb{\frac{1}{n_f^2}-\frac{1}{n_i^2}}\qquad R=\SI{1.097e7}{m^{-1}}$
+\end{tabular}
+
+\section{Angular Momentum}
+
+\begin{tabular}{@{}l}
+    \threeEqn{L_x=yp_z-zp_y}{L_y=zp_x-xp_z}{L_z=xp_y-yp_x}{8em}{8em}{8em} \\
+    \threeEqn{[L_x,L_y]=i\h L_z}{[L_y,L_z]=i\h L_x}{[L_z,L_x]=i\h L_y}{8em}{8em}{8em} \\
+    \twoEqn{L^2=L_x^2+L_y^2+L_z^2}{[L^2,\vec L]=0}{12em}{12em} \\
+    \threeEqn{L_\pm=L_x\pm iL_y}{[L_z,L_\pm]=\pm\h L_\pm}{[L^2,L_\pm]=0}{8em}{8em}{8em} \\
+    \twoEqn{L^2f_l^m=\h^2l(l+1)f_l^m}{L_zf_l^m=\h mf_l^m}{12em}{12em} \\
+    $L^2=L_\pm L_\mp+L_z^2\mp\h L_z$ \\
+    $L_z(L_+^kf_l^m)=\h(m+k)(L_+^kf_l^m)$ \\
+    $L_z(L_-^kf_l^m)=\h(m-k)(L_-^kf_l^m)$
+\end{tabular}
+
+\section{Spin}
+
+\begin{tabular}{@{}l}
+    \threeEqn{[S_x,S_y]=i\h S_z}{[S_y,S_z]=i\h S_x}{[S_z,S_x]=i\h S_y}{8em}{8em}{8em} \\
+    \twoEqn{S^2\ket{sm}=\h^2s(s+1)\ket{sm}}{S_z\ket{sm}=\h m\ket{sm}}{12em}{12em} \\
+    $S_\pm=S_x\pm iS_y$ \\
+    $S_\pm\ket{sm}=\h\sqrt{s(s+1)-m(m\pm 1)}\ket{s,m\pm 1}$
+\end{tabular}
+
+\section{Spin $\mathbf{\frac 12}$}
+
+\begin{tabular}{@{}ll}
+    \rlap{$\S=\frac \h 2\vec\sigma\hspace{2em}$ {\footnotesize\threeEqn{\sigma_x=\mat{0 & 1 \\ 1 & 0}}{\sigma_y=\mat{0 & -i \\ i & 0}}{\sigma_z=\mat{1 & 0 \\ 0 & -1}}{8em}{8em}{8em}}} & \\
+    Magnetic & $H=-\frac{g_s\mu_B}{\h}\S\cdot\vec B=-\frac{g_s\mu_B}{2\h}B_z\sigma_z$ \\
+    \rlap{{ $\hspace{2em} e^{i\frac{g_s\mu_B}{2\h}B_z\sigma_zT}=\cos\lrb{\frac{g_s\mu_B}{2\h}B_zT}\I+i\sin\lrb{\frac{g_s\mu_B}{2\h}B_zT}\sigma_z$}} & \\
+    Eigenstates & $S_z\ket{1}=\frac{\h}{2}\ket 1\qquad S_z\ket{0}=-\frac{\h}{2}\ket{0}$ \\
+    NOT & $X=\outer 10+\outer 01$ \\
+    Z & $Z=\outer 11-\outer 00$ \\
+    iY & $iY=\outer 10-\outer 01$ \\
+    Hadamard & $h=\frac{1}{\sqrt{2}}\blrb{\outer 11-\outer 00+\outer 01+\outer 10}$
+\end{tabular}
+
+\subsection{Two Qubit}
+
+\begin{tabular}{@{}ll}
+    Tensor Product & $\ket{\psi}_A\tp\ket{\psi}_B$ \\
+    Spin & $\S=\S_A\tp\I_B+\I_A\tp\S_B$ \\
+    & $\S^2=\S_A^2\tp\I_B+\I_A\tp\S_B^2+2\S_A\tp\S_B$ \\
+    CNOT & $\ket 1_A{_A}\bra 1\tp\I_B+\ket 0_A{_A}\bra 0\tp X_B$ \\
+    & flips $B$ if $\ket 0_A$ \\
+    Density & $\rho=\outer \psi\psi\quad$ \\
+    Pure State & $\Tr(\rho)=1\quad\rho^2=\rho$ \\
+    Reduced & $\rho^{(B)}={_A}\bra 1\rho\ket 1_A+{_A}\bra 0\rho\ket 0_A$ \\
+    Entropy & $S=-\Tr(\rho^{(B)})\ln(\rho^{(B)})$ \\
+    & $S=-\sum_i r_i\ln(r_i)$
+\end{tabular}
+
+
+
+\rule{\linewidth}{0.1pt}
+{\scriptsize 
+Compiled \today}
+
+\end{multicols*}
+
+\end{document}
