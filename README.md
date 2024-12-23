@@ -20,6 +20,7 @@
 | Course | Name | Notes/Formula Sheet |
 | ------ | ---- | ------------------- |
 | APSC 278 | Engineering Materials | [Notes](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/APSC%20278%20-%20Engineering%20Materials/apsc_278_notes.pdf) |
+| CIVL 215 | Fluid Mechanics I | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/CIVL%20215%20-%20Fluid%20Mechanics%20I/civl_215_formula_sheet.pdf) |
 | ELEC 204 | Linear Circuits | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/ELEC%20204%20-%20Linear%20Circuits/elec_204_formula_sheet.pdf) |
 | ENPH 270 | Mechanics II | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/ENPH%20270%20-%20Mechanics%20II/enph_270_formula_sheet.pdf) |
 | MATH 220 | Mathematical Proof | [Video Notes](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20220%20-%20Mathematical%20Proof/math_220_video_notes.pdf), [Class Notes](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20220%20-%20Mathematical%20Proof/math_220_class_notes.pdf) |
