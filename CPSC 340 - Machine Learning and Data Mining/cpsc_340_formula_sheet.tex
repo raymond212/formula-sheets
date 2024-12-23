@@ -1,0 +1,570 @@
+\documentclass[10pt]{article}
+%----------Packages----------
+\usepackage[utf8]{inputenc}
+\usepackage[landscape,left=5mm,right=5mm,top=5mm,bottom=5mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage{graphicx}
+
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate]{topsep=0pt,noitemsep}
+
+%----------Page formatting----------
+\pagenumbering{gobble}
+\setlength{\parindent}{0pt}
+
+%----------Symbols----------
+
+%----------General----------
+\newcommand{\ds}{\displaystyle}
+\newcommand{\tab}{\hspace{.02\textwidth}}
+\newcommand{\twoEqn}[4]{$\makebox[#3][l]{$#1$} \makebox[#4][l]{$#2$}$}
+\newcommand{\threeEqn}[6]{$\makebox[#4][l]{$#1$} \makebox[#5][l]{$#2$} \makebox[#6][l]{$#3$}$}
+\newcommand{\fourEqn}[8]{$\makebox[#5][l]{$#1$} \makebox[#6][l]{$#2$} \makebox[#7][l]{$#3$} \makebox[#8][l]{$#4$}$}
+\newcommand{\splittab}{\hspace{2.58ex}}
+
+%----------Brackets----------
+\newcommand{\lrb}[1]{\left(#1\right)}
+\newcommand{\agb}[1]{\left\langle#1\right\rangle}
+\newcommand{\sqb}[1]{\left[#1\right]}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+%----------Sections----------
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0ex}{-1ex}{0.7ex}
+                        {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0ex}{-0.4ex}{0.4ex}
+                        {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+
+%----------CPSC 340----------
+\newcommand{\train}{\text{train}}
+\newcommand{\test}{\text{test}}
+\newcommand{\gap}{\text{gap}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\sign}{\text{sign}}
+\newcommand{\argmin}{\text{argmin}}
+\newcommand{\argmax}{\text{argmax}}
+
+%----------Document Begins Here----------
+
+\begin{document}
+\small
+
+\begin{multicols*}{3}
+\raggedcolumns
+
+{\LARGE{\underline{CPSC 340 Formula Sheet}}}
+
+\section{Basics}
+
+Entropy: $-\sum_{c=1}^k p_c\log p_c$
+
+L0 norm: $\abs{r}_0$ counts number of non-zero elements in $r$
+
+L1 norm: $\abs{r}_1=\sum\abs{r_i}$
+
+L2 norm: $\abs{r}_2=\sqrt{\sum r_i^2}$
+
+L$\infty$ norm: $\abs{r}_\infty=\max\abs{r_i}$
+
+Dot product: $a^Tb=b^Ta$
+
+Norm: $\norm{a}^2=a^Ta$
+
+Transpose: $(A+B)^T=A^T+B^T\qquad(AB)^T=B^TA^T$
+
+\section{Supervised Learning}
+
+\underline{Notation}
+
+Feature matrix $X=[n \times d]$
+
+Example $i$: $x_i$. \quad Column $j$: $x^j$
+
+Label vector $y=[n \times 1]$
+
+Prediction vector $\hat y=[n \times 1]$
+
+Test data/predictions: $\widetilde{X}$ and $\tilde{y}$
+
+\underline{Concepts}
+
+Training accuracy: accuracy on training data
+
+Test accuracy: accuracy on new (test) data
+
+Golden rule: never train on test data
+
+Overfitting: low accuracy on test data since model is too specific to training data
+
+IID assumption: assume training data reflects test data
+
+Training and test error: $E_\train$ and $E_\test$.
+
+Generalization gap: $E_\gap=E_\test-E_\train$
+
+Fundamental trade-off: for complex model, $E_\train$ decreases but $E_\gap$ increases
+
+Validation: use part of training data to approximate test data
+
+Optimization bias: find good model by chance, but have overfit to validation set
+
+Cross validation: partitition section of data for validation, then average all of the validation errors to get a more accurate estimate of the test error
+
+\section{Decision Trees}
+
+Decision stump: split data on one feature, then pick most common labels for predictions. $O(nkd)$, $k$ is number of thresholds.
+
+Decision tree: greedy splitting or info gain (better). Aim to decrease entropy.
+
+$\text{info gain}=\text{entropy}(y)-\frac{n_1}{n}\text{entropy}(y_1)-\frac{n_2}{n}\text{entropy}(y_2)$
+
+\section{Naive Bayes}
+
+$P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B)}$
+
+$P(\text{spam}\mid\text{words})=\frac{P(\text{words}\mid\text{spam})P(\text{spam})}{P(\text{words})}$
+
+$P(\text{words}\mid\text{spam})=\prod_{j=1}^d P(\text{word}_j\mid\text{spam})$
+
+Estimate $P(\text{word}_j\mid\text{spam})$ and $P(\text{spam})$ based on proportion in training data 
+
+Laplace smoothing: avoid no occurences for a word in a class. Add $\beta$ to numerator and $\beta k$ to denominator of $P(\text{word}_j\mid\text{spam})$
+
+\section{KNN}
+
+Finds $k$ nearest training examples, then takes most common label.
+
+Lazy learning: does not train, just memorizes data. $O(nd)$ to classify one example.
+
+Nonparametric: model size depends on number of training examples 
+
+Problematic for high-dimensional data or features with different scales
+
+\section{Ensemble Methods}
+
+Voting: take majority vote of multiple (possibly different structure) models
+
+Stacking: fit a classifier on the predictions of other classifiers
+
+Bootstrapping: sample with replace to create new training sets 
+
+Random trees: only consider subset of features at each split (typically $\sqrt{d}$)
+
+Random forests: bootstrap data to train multiple random trees, then vote
+
+\section{Clustering}
+
+K-Means: assigns each point to closest mean, then update means. $O(ndk)$ to assign examples, $O(nd)$ to update means. Does not work well with non-convex clusters.
+
+Label switching: cluster label $\hat y_i$ is meaningless
+
+Vector quantization: replace examples with mean of their cluster
+
+Density-based clustering: $\varepsilon$ threshold for neighbour. MinNeighbours: number of neighbours needed for dense region.
+
+1. Find core points that have MinNeighbours points nearby
+
+2. Merge core points into clusters (can be reached by traversing through other core points)
+
+3. Expand clusters based on existing and newfound core points
+
+Naive case $O(dn^2)$, but can be sped up to $O(dn\log n)$. 
+
+Hierarchical clustering: tree of clustering which splits data into small clusters. 
+
+Bottom up clustering: each point starts as own cluster, then merge closest clusters repeatedly. 
+
+Biclustering: cluster training examples and features. Heatmap visualizes clusters.
+
+\section{Outliers}
+
+1. Probabilistic: assume data is generated by a distribution, then find points with low probability
+
+2. Graphical: visualization of data. Limited by dimensionality
+
+3. Cluster based: find points far from clusters, or small clusters 
+
+4. Distance based: find points far from other points, KNN
+
+Local distance: outlierness = $\frac{\text{average distance of }i\text{ to KNN}}{\text{average distance of neighbours to KNN}}$
+
+5. Supervised learning 
+
+\section{Linear Regression}
+
+1D objective: minimize $f(w)=\frac 12\sum_{i=1}^n(wx_i-y_i)^2$
+
+1D solution: $w=\frac{\sum_{i=1}^n x_iy_i}{\sum_{i=1}^n x_i^2}$
+
+Weights $w=[d \times 1]$
+
+Data matrix $X=[n \times d]$
+
+Example $x_i=[d \times 1]$
+
+Outputs $y=[n \times 1]$
+
+Objective: $f(w)=\frac 12\sum_{i=1}^n(w^Tx_i-y_i)^2=\frac 12\norm{Xw-y}^2$
+
+Matrix gradients:
+
+\tab $\nabla\sqb{c}=0\qquad\nabla\sqb{w^Tb}=b$
+
+\tab $\nabla\sqb{\frac 12w^TAw}=Aw$ for symmetric $A$.
+
+2D solution: $X^TXw=X^Ty$ (normal equations)
+
+Normal equations time: $O(nd^2+d^3)$
+
+Bias: create matrix $Z$ with extra feature of 1s
+
+Polynomial: $Z=\mat{1 & x_1 & \cdots & (x_1)^p \\ \vdots & \vdots & \ddots \\ 1 & x_n & \cdots & (x_n)^p}$
+
+Transformed data matrix: $Z=[n\times k]$
+
+Transformed normal equations: $Z^TZv=Z^Ty$
+
+\section{Gradient Descent}
+
+Iteration equation: $w^{t+1}=w^t-\alpha^t\nabla f(w^t)$
+
+Gradient descent time: $O(ntd)$
+
+Convex functions: lines between points are above function
+
+Convexity criterion:
+
+1. 1-variable, twice-differentiable, $f''(w)\ge 0$
+
+2. convex function * non-negative constant
+
+3. linear functions, norms, squared norms
+
+4. sum/max of convex functions
+
+5. composition of convex function with linear function $f(w)=g(Xw-y)$, $g$ is convex
+
+\section{Modified Linear Regression}
+
+Robust regression: L1 loss $f(w)=\sum_{i=1}^n\abs{w^Tx_i-y_i}$
+
+Huber loss: smooth approximation to L1. 
+
+\tab $h(r_i)=\begin{cases}
+  \frac 12r_i^2 & \text{if }\abs{r_i}\le\ep\\
+  \ep(\abs{r_i}-\frac 12\ep) & \text{otherwise}
+\end{cases}$
+
+Brittle regression: L$\infty$ norm minimizes highest error
+
+Log-sum-exp: smooth approximation to L$\infty$
+
+\tab $\max_i\set{z_i}\approx\log(\sum_i\exp(z_i))$
+
+Information criteria: $\text{score}(p)=\frac 12\norm{Z_pv-y}^2+\lambda k$
+
+Degrees of freedom: $k=(p+1)$ for polynomial
+
+Akaike information criterion (AIC): $\lambda=1$
+
+Bayesian information criterion (BIC): $\lambda=\frac 12\log(n)$
+
+\section{Feature Selection}
+
+Association: compute correlation between feature and output. Performs poorly because it ignores variable interactions
+
+Regression weight: keep features with large weights. Has major problems with collinearity
+
+Search and score: pick best subset of features based on score (often validation error). Struggles with large number of features
+
+Forward selection: start with no features, greedibly add features that improve score
+
+L0-penalty: $f(w)=\frac 12\norm{Xw-y}^2+\lambda\norm w_0$
+
+\section{Regularization}
+
+L2-Regularization (Ridge): $f(w)=\frac 12\norm{Xw-y}^2+\frac\lambda 2\norm w^2$
+
+Normal equations: $(X^TX+\lambda I)w=X^Ty$
+
+Regularization path: plot weights against $\lambda$
+
+Standardize features: replace $y_i$ with $\frac{y_i-\mu_y}{\sigma_y}$
+
+Radial basis functions (RBF): replace $x_i$ with 
+
+\tab $z_i=(g(\norm{x_i-x_1}),\ldots,g(\norm{x_i-x_n}))$
+
+Gaussian RBF: $g(\ep)=\exp(-\frac{\ep^2}{2\sigma^2})$
+
+Hyperparameter optimization: exhaustive search $\sigma$ and $\lambda$, or random search
+
+L1-Regularization (LASSO): $f(w)=\frac 12\norm{Xw-y}^2+\lambda\norm w_1$
+
+- Lower test error, requires gradient methods
+
+- Non-unique and sparse solutions
+
+- Can learn with exponential irrelevant features 
+
+Ensemble: designed to reduce false positives/false negatives
+
+Bootstrap: only take features selected in all bootstraps (reduces false positives)
+
+\section{Linear Classifiers}
+
+Prediction: $o_i=w^Tx_i$
+
+Least squares: not good because "too right" predictions are penalized
+
+0-1 loss: number of classification errors
+
+\tab 0-1 loss $=\norm{\sign(o_i)-y}_0$
+
+\tab Non-convex: difficult to minimize
+
+Perceptron: update weights when prediction is wrong 
+
+\tab $w^0=0,\qquad w^{t+1}=w^t+y_ix_i$
+
+\tab Minimizes 0-1 loss if data is linearly separable
+
+Degenerate convex: $f(w)=\sum_{i=1}^n\max\set{0, -y_io_i}$
+
+Hinge loss: $\max\set{0,1-y_io_i}$
+
+Support vector machine (SVM): hinge loss with L2 regularization
+
+- $f(w)=\sum_{i=1}^n\max\set{0,1-y_iw^Tx_i}+\frac\lambda 2\norm w^2$
+
+- $f(w)=C\sum_{i=1}^n\max\set{0,1-y_iw^Tx_i}+\frac 12\norm w^2$
+
+- $C=\frac 1\lambda$, low $C$ means high regularization
+
+Logistic loss: $\log(1+\exp(-y_iw^Tx_i))$
+
+Probability: $p(y_i=1\mid w,x_i)=\frac{1}{1+\exp(-w^Tx_i)}$
+
+One vs All: one classifier for each class, then take most confident (highest value of $o_{ic}$)
+
+\tab $W=[k\times d]$, each row is a classifier
+
+Multi-class SVM: $w_{yi}^Tx_i>w_c^Tx_i$ for all $c\ne y_i$
+
+- Sum: $\sum_{c\ne y_i}\max\set{0,1-w_{yi}^Tx_i+w_c^Tx_i}$
+
+- Max: $\max_{c\ne y_i}\set{\max\set{0,1-w_{yi}^Tx_i+w_c^Tx_i}}$
+
+- Softmax: $w_{yi}^Tx_i>\max_c\set{w_c^Tx_i}$
+
+- $\implies$ minimize $-w_{yi}^Tx_i+\log(\sum_{c=1}^k\exp(w_c^Tx_i))$
+
+Multi-class probability: $p(y=c\mid z_1,z_2,\ldots,z_k)=\frac{\exp(z_c)}{\sum_{c'=1}^k\exp{z_{c'}}}$
+
+Matrix form: predict $\argmax(XW^T)$
+
+\section{Feature Engineering}
+
+Discretization: convert continuous to categorical, good for counting-based methods
+
+\newcolumn
+Standardize: convert to same units/normal distribution, good for distance-based methods
+
+Non-linear transforms: polynomial, exponential/logarithm, sinusoidal, RBFs, good for regression-based methods
+
+Bag of words: represent sentences/documents by word counts
+
+N-gram: ordered sets of $n$ words. Captures local context
+
+Kernel trick: 
+
+- L2-regularized least squares: $f(v)=\frac 12\norm{Zv-y}^2+\frac\lambda 2\norm v^2$
+
+- Solution: $v=\underbrace{(Z^TZ+\lambda I)}_{k\times k}{^{-1}}Z^Ty$
+
+- Equivalent solution: $v=Z^T\underbrace{(ZZ^T+\lambda I)}_{n\times n}{^{-1}}y$. 
+
+- $\hat y=\tilde Zv=\tilde ZZ^T(ZZ^T+\lambda I)^{-1}y=\tilde K(K+\lambda I)^{-1}y=\tilde Ku$
+
+- Gram matrix $K=ZZ^T=[n\times n]$
+
+- $\tilde K=\tilde ZZ^T=[t\times n]$
+
+- Kernel function $k(x_i,x_j)=z_i^Tz_j$
+
+- Degree-$p$ polynomial: $k(x_i,x_j)=(1+x_i^Tx_j)^p$
+
+- RBF: $k(x_i,x_j)=\exp(-\frac{\norm{x_i-x_j}^2}{2\sigma^2})$
+
+- $K_{ij}=(1+x_i^Tx_j)^p,\quad\tilde K_{ij}=(1+\tilde x_i^Tx_j)^p$
+
+- Training cost $O(n^2d)$, prediction cost $O(ndt)$
+
+\section{Stochastic Gradient Descent}
+
+Sample gradient: $w^{t+1}=w^t-\alpha^t\nabla f_i(w^t)$
+
+Use cases: minimize average, can't do brittle regression
+
+Decreasing step sizes: needed for convergence
+
+- Use $\alpha^t=O(1/\sqrt t)$
+
+Mini-batch: sample $B$ examples for calculating gradient
+
+Termination: stop when error after $k$ iterations is less than $\ep$
+
+\section{MLE and MAP}
+
+Regression tree: predict mean of training examples in leaf
+
+XGBoost: each tree corrects previous trees
+
+Likelihood: for dataset $D$ and parameters $w$, pmf is $p(D\mid w)$
+
+Maximum likelihood estimation (MLE): choose 
+
+\tab $\hat w\in\argmax_w\set{p(D\mid w)}$
+
+Negative log-likelihood (NLL): minimize 
+
+\tab $\argmin_w\set{-\log(p(D\mid w))}$
+
+IID: $p(D\mid w)=\prod_{i=1}^n p(D_i\mid w)=\prod_{i=1}^n p(y_i\mid w, x_i)$
+
+Least squares is MLE under Gaussian likelihood:
+
+\tab $p(y_i\mid x_i,w)=\frac{1}{\sqrt{2\pi}}\exp(-\frac{(w^Tx_i-y_i)^2}{2})$ 
+
+\tab MLE of $w$ is minimum of $f(w)=\frac 12\norm{Xw-y}^2$
+
+Absolute error is MLE under Laplace likelihood:
+
+\tab $p(y_i\mid x_i,w)=\frac{1}{2}\exp(-\abs{w^Tx_i-y_i})$
+
+\tab MLE of $w$ is minimum of $f(w)=\norm{Xw-y}_1$
+
+Logistic loss is MLE under sigmoid likelihood
+
+Maximum a posteriori (MAP): choose
+
+\tab $\hat w\in\argmax_w\set{p(w\mid D)}$
+
+\tab $p(w\mid D)=\frac{p(D\mid w)p(w)}{p(D)}\propto p(D\mid w)p(w)$
+
+Prior $p(w)$: belief that $w$ is correct before seeing data
+
+Gaussian likelihood + prior gives L2-regularized least squares
+
+Laplace likelihood + Gaussian prior gives L2-regularized robust regression
+
+\section{PCA}
+
+Data matrix: $X[n\times d]$, $k$ components
+
+Outputs $Z=[n\times k],W=[k\times d]$
+
+Approximation: $\hat x_{ij}=\agb{w^j,z_i}, \hat x_i=W^Tz_i, X\approx ZW$
+
+Applications: dimensionality reduction, visualization, outlier detection
+
+Objective: $f(W,Z)=\sum_{i=1}^n\norm{W^Tz_i-x_i}^2$
+
+Centering: each column of $X$ has mean zero
+
+Choosing $k$: based on explained variance in data
+
+Prediction: replace $\tilde x_{ij}$ with $\tilde x_{ij}-\mu_j$, then 
+
+\tab $\tilde Z=\tilde XW^T(WW^T)^{-1}$
+
+Sequential fitting: find orthonormal PCs one at a time
+
+Alternating minimization: fix $Z$ and find optimal $W$, then fix $W$ and find optimal $Z$
+
+SGD: works well for large dataset $X$
+
+Outliers in $X$: can use L1 loss
+
+\tab $f(W,Z)=\sum_{i=1}^n\sum_{j=1}^d\abs{\agb{w^j,z_i}-x_{ij}}$
+
+L2-regularized PCA: 
+
+\tab $f(W,Z)=\frac 12\norm{ZW-X}^2+\frac{\lambda_1}{2}\norm W^2+\frac{\lambda_2}{2}\norm Z^2$
+
+Recommender Systems:
+
+- Content-based filtering (supervised): extract features $x_i$ of users and items, builds model to predict rating $y_i$ given $x_i$
+
+- Collaborative filtering (unsupervised): only have labels $y_{ij}$
+
+Matrix factorization: PCA over available ratings
+
+Multi-dimensional scaling (MDS): preserve distances
+
+\tab $f(Z)=\sum_{i=1}^n\sum_{j=i+1}^n(\norm{z_i-z_j}-\norm{x_i-x_j})^2$
+
+t-distributed stochastic neighbour embedding (t-SNE): preserve neighbour distances
+
+\section{Neural Networks}
+
+Neuron: $\hat y_i=v^Th(Wx_i)$
+
+Add bias: $\hat y_i=v^Th(Wx_i)+b$
+
+Sigmoid: $\frac{1}{1+\exp(-w_c^Tx_i)}$, smooth approximation to 0-1
+
+Regression: minimize squared residual
+
+Binary classification: minimize logistic loss
+
+Multi-class classification: minimize log softmax
+
+Deep learning: many hidden layers
+
+Backpropagation: compute gradients of loss wrt weights 
+
+- $m$ layers, $z_i$ have $k$ elements $\implies O(dk+mk^2)$
+
+Vanishing gradients: gradients become very small
+
+Relu: $\max\set{0,z_{ic}}$, avoids vanishing gradients
+
+Skip connections: add shortcuts between layers
+
+Dropout: randomly set some activations to zero
+
+ResNet: $a^{l+2}=h(a^l+W^{l+1}h(W^la^l))$
+
+Parameter initialization: weights cannot be the same initially
+
+Learning rate decay: decrease learning rate over time
+
+Momentum:
+
+\tab $w^{t+1}=w^t-\alpha^t\nabla f_i(w^t)+\beta^t(w^t-w^{t-1})$, usually $\beta^t=0.9$
+
+Weight decay: L2-regularize $v$ and $W$
+
+\section{Convolution Neural Network}
+
+Convolution: apply sliding filter
+
+Max pooling: take max of each region
+
+\end{multicols*}
+
+\end{document}

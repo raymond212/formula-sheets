@@ -34,6 +34,7 @@
 
 | Course | Name | Notes/Formula Sheet |
 | ------ | ---- | ------------------- |
+| CPSC 340 | Machine Learning and Data Mining | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/CPSC%20340%20-%20Machine%20Learning%20and%20Data%20Mining/cpsc_340_formula_sheet.pdf) |
 | MATH 307 | Applied Linear Algebra | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20307%20-%20Applied%20Linear%20Algebra/math_307_formula_sheet.pdf) (WIP) |
 | MATH 317 | Vector Calculus | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20317%20-%20Vector%20Calculus/math_317_formula_sheet.pdf) |
 | MATH 318 | Probability with Physical Applications| [Formula Sheet<sup>1</sup>](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20318%20-%20Probability%20with%20Physical%20Applications/math_318_formula_sheet.pdf) |
