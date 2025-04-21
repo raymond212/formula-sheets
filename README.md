@@ -44,4 +44,10 @@
 | PHYS 304 | Quantum Mechanics | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/PHYS%20304%20-%20Quantum%20Mechanics/phys_304_formula_sheet.pdf) |
 | PHYS 350 | Classical Mechanics | [Formula Sheet](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/PHYS%20350%20-%20Classical%20Mechanics/phys_350_formula_sheet.pdf) |
 
+## 400-Level
+
+| Course | Name | Notes/Formula Sheet |
+| ------ | ---- | ------------------- |
+| MATH 401 | Green's Functions and Variational Methods | [Notes Part 1](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20401%20-%20Green%27s%20Functions%20and%20Variational%20Methods/math_401_notes_part_1.pdf), [2](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20401%20-%20Green%27s%20Functions%20and%20Variational%20Methods/math_401_notes_part_2.pdf), [3](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20401%20-%20Green%27s%20Functions%20and%20Variational%20Methods/math_401_notes_part_3.pdf), [4](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20401%20-%20Green%27s%20Functions%20and%20Variational%20Methods/math_401_notes_part_4.pdf), [5](https://docs.google.com/viewer?url=https://github.com/raymond212/formula-sheets/raw/main/MATH%20401%20-%20Green%27s%20Functions%20and%20Variational%20Methods/math_401_notes_part_5.pdf) |
+
 <sup>1</sup> Adapted from the corresponding formula sheet in Donney Fan's [repository](https://github.com/DonneyF/formula-sheets/tree/master).
