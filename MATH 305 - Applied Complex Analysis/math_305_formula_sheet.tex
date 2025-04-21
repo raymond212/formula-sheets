@@ -1,0 +1,284 @@
+\documentclass[10pt]{article}
+%----------Packages----------
+\usepackage[utf8]{inputenc}
+\usepackage[landscape,left=5mm,right=5mm,top=5mm,bottom=5mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{tcolorbox}
+\usepackage{siunitx}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage{graphicx}
+
+\usepackage[shortlabels]{enumitem}
+\setlist[enumerate]{topsep=0pt,noitemsep}
+\setlist[itemize]{topsep=0pt,itemsep=0pt}
+
+%----------Page formatting----------
+\pagenumbering{gobble}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.4}
+
+%----------General----------
+\newcommand{\ds}{\displaystyle}
+\newcommand{\tab}{\hspace{.02\textwidth}}
+\newcommand{\twoEqn}[4]{$\makebox[#3][l]{$#1$} \makebox[#4][l]{$#2$}$}
+\newcommand{\threeEqn}[6]{$\makebox[#4][l]{$#1$} \makebox[#5][l]{$#2$} \makebox[#6][l]{$#3$}$}
+\newcommand{\fourEqn}[8]{$\makebox[#5][l]{$#1$} \makebox[#6][l]{$#2$} \makebox[#7][l]{$#3$} \makebox[#8][l]{$#4$}$}
+\newcommand{\splittab}{\hspace{2.58ex}}
+
+%----------Brackets----------
+\newcommand{\lrb}[1]{\left(#1\right)}
+\newcommand{\agb}[1]{\left\langle#1\right\rangle}
+\newcommand{\sqb}[1]{\left[#1\right]}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\clb}[1]{\set{#1}}
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+%----------Differentiation----------
+\renewcommand{\d}{\,d}
+\newcommand{\p}{\partial}
+\newcommand{\dv}[2]{\frac{d #1}{d #2}}
+\newcommand{\ddv}[2]{\frac{d^2 #1}{d #2^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ppd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+
+%----------Integration----------
+\newcommand{\infint}{\int_{-\infty}^{\infty}}
+
+%----------Sections----------
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0ex}{-1ex}{0.7ex}
+                        {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0ex}{-0.4ex}{0.4ex}
+                        {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+
+%----------MATH 305----------
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+\renewcommand{\arg}{\text{arg}}
+\newcommand{\Arg}{\text{Arg}}
+\renewcommand{\phi}{\varphi}
+
+\newcommand{\Def}{\textbf{Def}}
+
+\newcommand{\C}{\mathbb C}
+
+\newcommand{\Om}{\Omega}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\De}{\Delta}
+\newcommand{\de}{\delta}
+\newcommand{\al}{\alpha}
+\newcommand{\ga}{\gamma}
+
+\newcommand{\pa}{\partial}
+
+\newcommand{\Log}{\text{Log}}
+\newcommand{\Res}{\text{Res}}
+
+
+%----------Document Begins Here----------
+\begin{document}
+
+\begin{multicols*}{3}
+\raggedcolumns
+
+{\LARGE{\underline{MATH 305 Formula Sheet}}}
+
+\section{Complex Numbers}
+
+\begin{tabular}{@{}ll}
+  Definition & $z=x+iy$ \\
+  Conjugate & $\bar{z}=x-iy$ \\
+  Modulus & $\abs{z}=\sqrt{x^2+y^2}$ \\
+  % Components & $\Re(z)=\frac 12(z+\bar z)$ \\
+  % & $\Im(z)=\frac{1}{2i}(z-\bar z)$ \\
+  Polar Form & $z=re^{i\theta}=r(\cos\theta+i\sin\theta)$ \\
+  Arguments & $\arg(z)\in [0,2\pi)$ \\ 
+  & $\Arg(z)\in (-\pi,\pi]$ \\
+  Exponential & $e^z=e^x e^{iy}=e^x(\cos y+i\sin y)$ \\
+  Unity & $z=e^{\frac{2\pi ik}{n}}\iff z^n=1$ \\
+  Triangle & $|z+w|\le |z|+|w|$ \\
+  & $|z-w| \ge ||z|-|w||$ 
+\end{tabular}
+
+\section{Complex Functions}
+
+\begin{tabular}{@{}ll}
+  Translation by $\vec w$ & $f(z)=z+w$ \\
+  Rotation CCW by $\phi$ & $f(z)=e^{i\phi}z$ \\
+  Scaling by $\lambda$ & $f(z)=\lambda z$ \\
+  Reciprocal $\frac 1z$ & $\dot B_1(0)\mapsto |z|>1$ \\
+  & $B_1(1)\mapsto \Re(z)>\frac 12$
+\end{tabular}
+
+\section{Limits, Continuity, Differentiability}
+
+\begin{tabular}{@{}ll}
+  Continuity & $\lim_{z\to z_0}f(z)=f(z_0)$ \\
+  Differentiability & $\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}=f'(z_0)$ exists \\
+  Cauchy-Riemann & $\partial_x u(x,y)=\partial_y v(x,y)$ \\
+  & $\partial_y u(x,y)=-\partial_x v(x,y)$ \\
+  Harmonics & $f\in H(\Om)\implies \De u=\De v=0$ \\
+  Branch Cuts & $\Log(z)$ along $(-\infty,0]$ \\
+  & $\log(z)$ along $[0,\infty)$
+\end{tabular}
+
+\section{Elementary Functions}
+
+\begin{tabular}{@{}ll}
+  Trig & $\cos z=\frac 12(e^{iz}+e^{-iz})$ \\ 
+  & $\sin z=\frac{1}{2i}(e^{iz}-e^{-iz})$ \\
+  Hyperbolic & $\cosh z=\frac 12(e^z+e^{-z})$ \\
+  & $\sinh z=\frac 12(e^z-e^{-z})$ \\
+  Logarithm & $\Log(z)=\ln|z|+i\Arg_{(-\pi,\pi]}(z)$ \\
+  & $\log(z)=\ln|z|+i\arg_{[0,2\pi)}(z)$ \\
+  Roots & $z^\al=e^{\al\Log(z)}$
+\end{tabular}
+
+\section{Integration}
+
+\begin{tabular}{@{}ll}
+  Curve & $\al:[a,b]\to\C$ \\
+  Contour Integral & $\int_\al f(z)\,dz=\int_a^b f(\al(t))\al'(t)\,dt$ \\
+  Length & $\ell(\al)=\int_a^b\abs{\al'(t)}\,dt$ \\
+  Bound & $\abs{\int_\al f(z)\,dz}\leq \ell(\al)\max_{z\in\al}\abs{f(z)}$ \\
+  Antiderivative & $F'(z)=f(z)$ \\
+  Closed Integral & $\oint_\al f(z)\,dz=0$ \\
+  Loop Reciprocal & $\oint_\al \frac{a}{z-z_0}\,dz=2\pi ia\,\forall\,\al$ around $z_0$ \\
+  Cauchy Integral & $\oint_\al \frac{f(z)}{z-w}\,dz=2\pi if(w)\,\forall\,\al$ around $w$ \\
+  Cauchy Derivative & $f^{(k)}(w)=\frac{k!}{2\pi i}\oint_\al\frac{f(z)}{(z-w)^{k+1}}\,dz$ \\
+  MVP & $f(w)=\frac{1}{2\pi}\int_0^{2\pi}f(w+re^{it})\,dt$
+\end{tabular}
+
+\section{Analytic Functions}
+
+\begin{tabular}{@{}ll}
+  Geometric & $\sum_{n=0}^\infty z^n=\frac{1}{1-z}, \abs{z}<1$ \\
+  Taylor & $f(z)=\sum_{n=0}^\infty \frac{f^{(n)}(z_0)}{n!}(z-z_0)^n$ \\
+  Residue & $\Res(f,z_0)=a_{-1}$ \\
+  Theorem & $\oint_\al f(z)\,dz=2\pi i\sum_{j=1}^N \Res(f,z_j)$ \\
+  Simple & $\Res(f,z_0)=\lim_{z\to z_0}(z-z_0)f(z)$ \\
+  General & $\Res=\frac{1}{(m-1)!}\lim_{z\to z_0}\frac{d^{m-1}}{dz^{m-1}}\left[(z-z_0)^mf(z)\right]$ \\
+  Derivative & $\Res\big(\frac{f(z)}{g(z)},z_0\big[\big])=\frac{f(z_0)}{g'(z_0)}$ \\
+  Basel & $\sum_{n=1}^\infty \frac{1}{n^2}=\frac{\pi^2}{6}$ \\
+  Zeta & $\zeta(s)=\sum_{n=1}^\infty \frac{1}{n^s}$ \\
+  Trig & $\int_0^{2\pi}\frac{P(\sin\phi,\cos\phi)}{Q(\sin\phi,\cos\phi)}\,d\phi$ \\
+  & $\sin\varphi=\frac{1}{2i}(z-\frac 1z),\quad z=e^{i\varphi}$ \\
+  & $\cos\varphi=\frac 12(z+\frac 1z),\quad z=e^{i\varphi}$ \\
+  & $d\varphi=\frac{1}{iz}\,dz$ \\
+  & $\int_0^{2\pi}\implies \oint_{|z|=1}$ \\
+  Laurent & $f(z)=\sum_{n=-\infty}^\infty a_n(z-z_0)^n$ \\
+  & $a_n=\frac{1}{2\pi i}\oint_{|z-z_0|=r}\frac{f(z)}{(z-z_0)^{n+1}}\,dz$ \\
+  Regular & $\sum_{n=0}^\infty a_n(z-z_0)^n$ \\
+  Singular & $\sum_{n=-\infty}^{-1} a_n(z-z_0)^n$ \\
+  Argument & $\frac{1}{2\pi i}\oint_\alpha \frac{f'(z)}{f(z)}\,dz=\#\text{zeros}-\#\text{poles}$ \\
+  & $\frac{f'(z)}{f(z)}=\frac{d}{dz}(\ln|f(z)|+i\Arg(f(z)))$ \\
+  & $\oint_\alpha\frac{f'(z)}{f(z)}\,dz = i\Delta_\al\arg(f(z))$ \\
+  & $\frac{1}{2\pi} \Delta_{\alpha} \arg(f(z))=\#\text{zeros }-\#\text{poles}$
+\end{tabular}
+
+\section{Series}
+
+\begin{tabular}{@{}ll}
+  Sine & $\sin z=z-\frac{z^3}{3!}+\frac{z^5}{5!}-\cdots=\sum_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}z^{2n+1}$ \\
+  Cosine & $\cos z=1-\frac{z^2}{2!}+\frac{z^4}{4!}-\cdots=\sum_{n=0}^\infty \frac{(-1)^n}{(2n)!}z^{2n}$ \\
+  Exp & $e^z=1+z+\frac{z^2}{2!}+\frac{z^3}{3!}+\cdots=\sum_{n=0}^\infty \frac{z^n}{n!}$ \\
+  Log & $\ln(1+z)=z-\frac{z^2}{2}+\frac{z^3}{3}-\cdots=\sum_{n=1}^\infty \frac{(-1)^{n-1}}{n}z^n$ \\
+\end{tabular}
+
+\section{Identities}
+
+\begin{tabular}{@{}l}
+  $\sin^2 z + \cos^2 z = 1$ \\
+  $\cosh^2 z - \sinh^2 z = 1$ \\
+  $\sec^2 z = 1 + \tan^2 z$ \\
+  $\sin 2z=2\sin z\cos z$ \\
+  $\cos 2z=\cos^2 z - \sin^2 z$ \\
+  $\sin(x\pm y)=\sin x \cos y \pm \cos x \sin y$ \\
+  $\cos(x\pm y)=\cos x \cos y \mp \sin x \sin y$ \\
+\end{tabular}
+
+\rule{\linewidth}{0.1pt}
+{\scriptsize 
+Compiled \today \space by Raymond Wang}
+
+\end{multicols*}
+
+\section{Theorems and Definitions}
+
+1. (Limit) Consider $f:\Om\to\C$. For $z_0\in\Om$, we write $\lim_{z\to z_0}f(z)=L$ if for all $\ep>0$, there exists a radius $\de>0$ such that $|f(z)-L|<\ep$ for all $z$ such that $|z-z_0|<\de$. 
+
+2. (Continuity) $f$ is continuous at $z_0$ if $\lim_{z\to z_0}f(z)=f(z_0)$. 
+
+3. (Differentiability) $f$ is differentiable at $z_0$ if $\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}$ exists.
+
+4. (Cauchy-Riemann) Let $f=u+iv$. Then $f$ is differentiable at $z_0$ if and only if $\pa_x u=\pa_y v$ and $\pa_y u=-\pa_x v$ at $z_0$. 
+
+5. (Holomorphic) If $f$ is differentiable for all $z\in\Om$, then $f$ is holomorphic on $\Om$ and we write $f\in H(\Om)$. If $f\in H(\C)$ then $f$ is entire.
+
+6. (Harmonics) If $f\in H(\Om)$, then $\De u(x,y)=\De v(x,y)=0$. 
+
+7. (Curves) A smooth parameterized curve is a function $\al:[a,b]\to\C$ such that $\al'$ exists and is nonzero for $t\in[a,b]$. 
+
+8. (Closed and Simple) $\al$ is closed if $\al(a)=\al(b)$ and simple if $\al(t_1)\neq\al(t_2)$ for $a<t_1<t_2<b$.
+
+9. (Fundamental Theorem of Calculus) Let $\al\in\Om$. If $F$ is an antiderivative of $f$ in a neighbourhood of $\al$, then $\int_\al f(z)\,dz=F(\al(b))-F(\al(a))$.
+
+10. (Closed Integral) If $f$ has an antiderivative and $\al$ is a closed curve, then $\oint_\al f(z)\,dz=0$. 
+
+11. (Cauchy's Theorem) If $f$ is holomorphic in a simply connected domain $\Om$, then $\oint_\al f(z)\,dz=0$ for all simple closed curves $\al\in\Om$.
+
+12. (Cauchy's Integral Formula) Let $\al$ be a simple closed curve and $f$ be holomorphic on $\al$ and its interior. Then $\oint_\al \frac{f(z)}{z-w}\,dz=2\pi if(w)$ for all $w$ inside $\al$.
+
+13. (Mean Value Property) For a holomorphic function $f(w)$, we have $f(w)=\frac{1}{2\pi}\int_0^{2\pi}f(w+re^{it})\,dt$. 
+
+14. (Maximum Modulus Principle) If $f$ is a non-constant holomorphic function on a domain $\Om$, then $|f|$ cannot reach a local maximum in $\Om$. 
+
+15. (Liouville's Theorem) If $f$ is entire and bounded, then it is constant. 
+
+16. (Rouche's Theorem) Let $f$ be holomorphic on $\al$ and its interior. If $|f(z)-1|<1$ for all $f\in\al$, then $f(z)\ne 0$ for all $z$ in the interior of $\al$. 
+
+17. (Fundamental Theorem of Algebra) A polynomial of degree $n$ has exactly $n$ roots in $\C$. 
+
+18. (Analyticity) If $f\in H(\Om)$, then $f$ is equal to its Taylor series at $z_0\in\Om$. 
+
+19. (Identity Theorem) Let $\Om$ be a domain and $\al$ be a curve in $\Om$. If $f,g\in H(\Om)$ are so that $f(z)=g(z)$ for all $z\in\al$, then $f(z)=g(z)$ for all $z\in\Om$. 
+
+20. (Residue Theorem) $\oint_\alpha f(z)\,dz=2\pi i\sum_{j=1}^N \Res(f,z_j)$
+
+21. (Argument Principle) If $f$ is meromorphic in $\Omega$ and $\alpha$ is a positively oriented simple closed curve in $\Omega$ such that $\text{int}(\alpha)\subset\Omega$ and $f$ has no zeros or poles on $\alpha$, then
+
+\hspace{1.4em} $\frac{1}{2\pi i}\oint_\alpha \frac{f'(z)}{f(z)}\,dz=(\#\text{ zeros in int}(\alpha))-(\#\text{ poles in int}(\alpha))$ where zeros and poles are counted with their order.
+
+\section{Quick Definitions}
+
+1. (Bounded) $\Om\subset\C$ is bounded if there exists $r>0$ such that $|z|\le r$ for all $z\in\Om$. 
+
+2. (Open) $\Om\subset\C$ is open if for all $z\in\Om$, there exists $r>0$ such that $B_r(z)\subset\Om$.
+
+3. (Connected) $\Om\subset\C$ is connected if there is a continuous path between any two points in $\Om$.
+
+4. (Simply-Connected) $\Om\subset\C$ is simply-connected if it is connected and every closed curve in $\Om$ can be shrunk to a point. 
+
+5. (Branch Cuts) A branch cut is a curve on which a function is discontinuous. 
+
+6. (Zero) A point $z_0\in\C$ such that $f(z_0)=0$ is a zero of $f$. $z_0$ is a zero of order $m$ if $f(z_0)=f'(z_0)=\cdots=f^{(m-1)}(z_0)=0$ and $f^{(m)}(z_0)\ne 0$.
+
+7. (Pole) $f$ has a pole of order $m$ at $z_0$ if $\frac 1f$ is holomorphic in $B_r(z_0)$ and $z_0$ is a zero of order $m$ of $\frac 1f$. If $m=1$, then $z_0$ is a simple pole.
+
+8. (Meromorphic) If $f\in H(\Om\setminus\set{z_1,\ldots,z_n})$, then $f$ is meromorphic, as in it has finite poles. 
+
+9. (Residue) Let $f(z)=\frac{a_{-m}}{(z-z_0)^m}+\frac{a_{-m+1}}{(z-z_0)^{m-1}}+\cdots+\frac{a_{-1}}{z-z_0}+a_0+a_1(z-z_0)+\cdots$. Then the coefficient $a_{-1}$ is called the residue of $f$ at $z_0$.
+
+10. (Essential) If $f$ has an essential singularity at $z_0$, then $z_0$ is a pole of infinite order. 
+
+11. (Laurent Series) $\sum_{n=-\infty}^\infty a_n(z-z_0)^n$ is a Laurent series. $\sum_{n=-\infty}^{-1}a_n(z-z_0)^n$ is the singular part of the series, $\sum_{n=0}^\infty a_n(z-z_0)^n$ is the regular part of the series
+
+\end{document}
